@@ -30,7 +30,7 @@ public:
 	}
 
 	// Get the length of this vector
-	T Length() {
+	double Length() {
 		return sqrt((x*x) + (y*y));
 	}
 	// Normalize this vector
@@ -46,27 +46,15 @@ public:
 	}
 
 	// Adds provided Vector2 of same type onto this.
-	/*void Add (Vector2<T> const &v) {
-	x += v.x;
-	y += v.y;
-	}*/
-	// Adds provided double Vector2 onto this.
-	void Add (Vector2<double> const &v) {
+	template <typename U>
+	void Add (Vector2<U> const &v) {
 		x += v.x;
 		y += v.y;
 	}
-	// Adds provided ineger Vector2 onto this.
-	void Add (Vector2<int> const &v) {
-		x += v.x;
-		y += v.y;
-	}
-	// Adds provided float Vector2 onto this.
-	void Add (Vector2<float> const &v) {
-		x += v.x;
-		y += v.y;
-	}
+
 	// Functions for subtracting Vector's
-	void Sub (Vector2<T> const &v) {
+	template <typename U>
+	void Sub (Vector2<U> const &v) {
 		x -= v.x;
 		y -= v.y;
 	}
@@ -86,16 +74,19 @@ public:
 	*/
 
 	// Get the dot product of two vectors
-	static double Dot(Vector2<T> const & lhs, Vector2<T> const & rhs) {
+	template <typename U>
+	static double Dot(Vector2<U> const & lhs, Vector2<U> const & rhs) {
 		return ((lhs.x * rhs.x) + (lhs.y * rhs.y));
 	}
 	// Adds the vectors and retern's as a new one.
-	static Vector2<T> Add (Vector2<T> const &lhs, Vector2<T> const &rhs) {
+	template <typename U>
+	static Vector2<U> Add (Vector2<U> const &lhs, Vector2<U> const &rhs) {
 		Vector2 result (lhs.x + rhs.x, lhs.y + rhs.y);
 		return  result;
 	}
 	// Subtracts the vectors and retern's as a new one.
-	static Vector2<T> Sub (Vector2<T> const &lhs, Vector2<T> const &rhs) {
+	template <typename U>
+	static Vector2<U> Sub (Vector2<U> const &lhs, Vector2<U> const &rhs) {
 		Vector2 result (lhs.x - rhs.x, lhs.y - rhs.y);
 		return  result;
 	}

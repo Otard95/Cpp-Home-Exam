@@ -19,6 +19,9 @@
     <Filter Include="CDP\Headers">
       <UniqueIdentifier>{2bf91748-daaf-435b-9ee3-4642d2b68c03}</UniqueIdentifier>
     </Filter>
+    <Filter Include="nlohmann/json">
+      <UniqueIdentifier>{e128574f-b11e-4225-be43-d27be69e65c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -72,6 +75,18 @@
     <ClInclude Include="CDP\Headers\Vector2.h">
       <Filter>CDP\Headers</Filter>
     </ClInclude>
+    <ClInclude Include="CDP\Headers\InputManager.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CDP\Headers\Keys.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CDP\Headers\MouseButtons.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="nlohmann_json\json.hpp">
+      <Filter>nlohmann/json</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -102,6 +117,9 @@
       <Filter>CDP</Filter>
     </ClCompile>
     <ClCompile Include="CDP\Transform.cpp">
+      <Filter>CDP</Filter>
+    </ClCompile>
+    <ClCompile Include="CDP\InputManager.cpp">
       <Filter>CDP</Filter>
     </ClCompile>
   </ItemGroup>

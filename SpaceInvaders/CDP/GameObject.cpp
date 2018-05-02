@@ -17,3 +17,11 @@ void CDP::GameObject::Update() {
 	// for each component -> update
 
 }
+
+void CDP::GameObject::Instantiate(nlohmann::json&) {
+	// do some json stuff
+}
+
+void CDP::GameObject::Destroy(GameObject* go) {
+	//search and destroy
+}

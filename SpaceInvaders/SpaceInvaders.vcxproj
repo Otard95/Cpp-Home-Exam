@@ -155,6 +155,9 @@
     <ClInclude Include="CDP\Headers\Color.h" />
     <ClInclude Include="CDP\Headers\Component.h" />
     <ClInclude Include="CDP\Headers\GameObject.h" />
+    <ClInclude Include="CDP\Headers\InputManager.h" />
+    <ClInclude Include="CDP\Headers\Keys.h" />
+    <ClInclude Include="CDP\Headers\MouseButtons.h" />
     <ClInclude Include="CDP\Headers\Physics.h" />
     <ClInclude Include="CDP\Headers\Rigidbody.h" />
     <ClInclude Include="CDP\Headers\RigidbodyCore.h" />
@@ -162,6 +165,7 @@
     <ClInclude Include="CDP\Headers\Transform.h" />
     <ClInclude Include="CDP\Headers\Triplet.h" />
     <ClInclude Include="CDP\Headers\Vector2.h" />
+    <ClInclude Include="nlohmann_json\json.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -170,6 +174,7 @@
     <ClCompile Include="CDP\Collider.cpp" />
     <ClCompile Include="CDP\Component.cpp" />
     <ClCompile Include="CDP\GameObject.cpp" />
+    <ClCompile Include="CDP\InputManager.cpp" />
     <ClCompile Include="CDP\Physics.cpp" />
     <ClCompile Include="CDP\Rigidbody.cpp" />
     <ClCompile Include="CDP\Sprite.cpp" />
