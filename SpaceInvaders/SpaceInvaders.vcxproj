@@ -147,10 +147,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CDP\Headers\Canvas.h" />
+    <ClInclude Include="CDP\Headers\CDP.h" />
+    <ClInclude Include="CDP\Headers\CDP_fwd.h" />
+    <ClInclude Include="CDP\Headers\Collider.h" />
+    <ClInclude Include="CDP\Headers\ColliderCore.h" />
+    <ClInclude Include="CDP\Headers\Color.h" />
+    <ClInclude Include="CDP\Headers\Component.h" />
+    <ClInclude Include="CDP\Headers\GameObject.h" />
+    <ClInclude Include="CDP\Headers\Physics.h" />
+    <ClInclude Include="CDP\Headers\Rigidbody.h" />
+    <ClInclude Include="CDP\Headers\RigidbodyCore.h" />
+    <ClInclude Include="CDP\Headers\Sprite.h" />
+    <ClInclude Include="CDP\Headers\Transform.h" />
+    <ClInclude Include="CDP\Headers\Triplet.h" />
+    <ClInclude Include="CDP\Headers\Vector2.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CDP\Canvas.cpp" />
+    <ClCompile Include="CDP\Collider.cpp" />
+    <ClCompile Include="CDP\Component.cpp" />
+    <ClCompile Include="CDP\GameObject.cpp" />
+    <ClCompile Include="CDP\Physics.cpp" />
+    <ClCompile Include="CDP\Rigidbody.cpp" />
+    <ClCompile Include="CDP\Sprite.cpp" />
+    <ClCompile Include="CDP\Transform.cpp" />
     <ClCompile Include="SpaceInvaders.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -161,6 +184,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SpaceInvaders.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

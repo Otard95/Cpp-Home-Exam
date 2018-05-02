@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="CDP">
+      <UniqueIdentifier>{53fbdc20-2034-4116-9879-f131513afc85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CDP\Headers">
+      <UniqueIdentifier>{2bf91748-daaf-435b-9ee3-4642d2b68c03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -20,6 +26,51 @@
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CDP\Headers\Canvas.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CDP\Headers\CDP.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CDP\Headers\CDP_fwd.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CDP\Headers\Collider.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CDP\Headers\ColliderCore.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CDP\Headers\Color.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CDP\Headers\Component.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CDP\Headers\GameObject.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CDP\Headers\Physics.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CDP\Headers\Rigidbody.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CDP\Headers\RigidbodyCore.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CDP\Headers\Sprite.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CDP\Headers\Transform.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CDP\Headers\Triplet.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CDP\Headers\Vector2.h">
+      <Filter>CDP\Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -29,8 +80,37 @@
     <ClCompile Include="SpaceInvaders.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CDP\Canvas.cpp">
+      <Filter>CDP</Filter>
+    </ClCompile>
+    <ClCompile Include="CDP\Collider.cpp">
+      <Filter>CDP</Filter>
+    </ClCompile>
+    <ClCompile Include="CDP\Component.cpp">
+      <Filter>CDP</Filter>
+    </ClCompile>
+    <ClCompile Include="CDP\GameObject.cpp">
+      <Filter>CDP</Filter>
+    </ClCompile>
+    <ClCompile Include="CDP\Physics.cpp">
+      <Filter>CDP</Filter>
+    </ClCompile>
+    <ClCompile Include="CDP\Rigidbody.cpp">
+      <Filter>CDP</Filter>
+    </ClCompile>
+    <ClCompile Include="CDP\Sprite.cpp">
+      <Filter>CDP</Filter>
+    </ClCompile>
+    <ClCompile Include="CDP\Transform.cpp">
+      <Filter>CDP</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SpaceInvaders.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
