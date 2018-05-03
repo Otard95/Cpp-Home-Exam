@@ -13,3 +13,6 @@ Collider::Collider(std::vector<Component*> &components,
 void Collider::Start() {
 
 }
+
+void CDP::Collider::OnCollision(Collider &) {
+}

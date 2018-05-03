@@ -6,8 +6,8 @@ using namespace CDP;
 
 Physics::Physics()
 	: m_rigidbodies(nullptr)
-	, m_colliders(nullptr)
-{}
+	, m_colliders(nullptr) {
+}
 
 Physics& Physics::Instance() {
 	static Physics m_instance;
@@ -15,9 +15,8 @@ Physics& Physics::Instance() {
 }
 
 void Physics::Init(std::vector<Rigidbody> * rigidbodies,
-											 std::vector<Collider> * colliders
-											 /*std::vector<Transform> * transforms*/)
-{
+									 std::vector<Collider> * colliders
+/*std::vector<Transform> * transforms*/) {
 	m_rigidbodies = rigidbodies;
 	m_colliders = colliders;
 	//m_transforms = std::shared_ptr<std::vector<Transform>> (transforms);
@@ -29,9 +28,12 @@ void Physics::Update () {
 
 	if (m_rigidbodies == nullptr) return;
 
-	std::for_each(m_rigidbodies->begin(), m_rigidbodies->end(), [&] (Rigidbody& rb) {
-		std::for_each(m_colliders->begin(), m_colliders->end(), [&] (Collider& col) {
-			
+	std::for_each(m_rigidbodies->begin(), m_rigidbodies->end(), [&](Rigidbody& rb) {
+
+
+
+		std::for_each(m_colliders->begin(), m_colliders->end(), [&](Collider& col) {
+
 			if (&rb.collider == &col) return;
 
 			double dist = (col.transform.Position()
@@ -56,11 +58,34 @@ void Physics::Update () {
 				double t = (pos1.y - ex1.y > pos2.y - ex2.y ? pos1.y - ex1.y : pos2.y - ex2.y);
 
 				// left < right && bottom < top
-				if (l < r && b < t)
-				{
+				if (l < r && b < t) {
 					// Collition
 
+					rb.collider.OnCollision(col);
+					col.OnCollision(rb.collider);
 
+					if (rb.collider.is_trigger) return;
+
+					double dx = r - l;
+					double dy = t - b;
+
+					Vector2<double> rpos = pos1 - pos2;
+
+					if (dx < dy) {
+						// move in x axis
+						if (rpos.x < 0)
+							rb.transform.Translate(-dx, 0);
+						else
+							rb.transform.Translate(dx, 0);
+
+					} else {
+						// move in y axis
+						if (rpos.y < 0)
+							rb.transform.Translate(0, -dy);
+						else
+							rb.transform.Translate(0, dy);
+
+					}
 
 				}
 
