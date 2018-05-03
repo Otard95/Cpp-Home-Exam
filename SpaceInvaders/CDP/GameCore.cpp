@@ -54,18 +54,23 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 		auto y = jo["pos"]["y"];
 		CreateTransform(go.GetComponents(), go);
 		m_transforms.back().SetPosition(x, y);
-	}else if(type == "Sprite")
-	{
-		CreateSprite(go.GetComponents(), go);
 	}
-	else if (type == "Rigidbody")
+	else if(type == "Sprite")
 	{
-		CreateRigidbody(go.GetComponents(), go);
+		const auto texture = jo["texture"];
+		CreateSprite(go.GetComponents(), go, texture);
 	}
 	else if (type == "Collider")
 	{
 		CreateCollider(go.GetComponents(), go);
 	}
+	else if (type == "Rigidbody")
+	{
+		
+		CreateRigidbody(go.GetComponents(), go);
+
+	}
+	
 	
 	//const std::string str = it.key();
 
@@ -89,21 +94,21 @@ void GameCore::CreateTransform(std::vector<Component*> &components, GameObject& 
 	components.push_back(&m_transforms.back());
 }
 
-void GameCore::CreateSprite(std::vector<Component*> &components, GameObject& go)
+void GameCore::CreateSprite(std::vector<Component*> &components, GameObject& go, std::string texture)
 {
-	m_sprites.emplace_back(components, go);
+	m_sprites.emplace_back(components, go, texture);
 	components.push_back(&m_sprites.back());
 }
 
 void GameCore::CreateRigidbody(std::vector<Component*>& components, GameObject& go)
 {
-	m_rigidbodies.emplace_back(components, go);
+	m_rigidbodies.emplace_back(components, go, m_colliders.back(), m_transforms.back());
 	components.push_back(&m_rigidbodies.back());
 }
 
 void GameCore::CreateCollider(std::vector<Component*> &components, GameObject& go)
 {
-	m_colliders.emplace_back(components, go);
+	m_colliders.emplace_back(components, go, m_transforms.back());
 	components.push_back(&m_colliders.back());
 }
 // end
