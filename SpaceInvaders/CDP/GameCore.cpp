@@ -33,7 +33,7 @@ void GameCore::Instantiate(nlohmann::json& jsonObject)
 			{
 				for (nlohmann::json::iterator comp = it.value()["components"].begin(); comp != it.value()["components"].end(); ++comp)
 				{
-					AddComponent(m_game_objects.back(), comp.key(), comp.value());
+					AddComponent(m_game_objects.back(), comp.value()["type"], comp.value());
 				}
 			}		
 		}
@@ -47,7 +47,7 @@ void GameCore::Destroy(GameObject* go)
 
 void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo)
 {
-
+	std::cout << type << std::endl;
 	if(type == "Transform")
 	{
 		const auto x = jo["pos"]["x"];
@@ -73,7 +73,6 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 		CreateRigidbody(go.GetComponents(), go);
 		m_rigidbodies.back().m_use_gravity = use_gravity;
 		m_rigidbodies.back().m_is_kinematic = is_kinematic;
-
 	}
 }
 
@@ -102,6 +101,7 @@ void GameCore::CreateRigidbody(std::vector<Component*>& components, GameObject& 
 void GameCore::CreateCollider(std::vector<Component*> &components, GameObject& go)
 {
 	m_colliders.emplace_back(components, go, m_transforms.back());
+	std::cout << "added collider" << std::endl;
 	components.push_back(&m_colliders.back());
 }
 // end
