@@ -3,6 +3,7 @@
 
 #include <memory>
 #include "Component.h"
+#include "Vector2.h"
 
 namespace CDP {
 
@@ -11,6 +12,8 @@ namespace CDP {
 
 		Collider & collider;
 		Transform & transform;
+
+		Vector2<double> velocity;
 
 		Rigidbody(std::vector<std::shared_ptr<Component>> &components,
 							GameObject& go,

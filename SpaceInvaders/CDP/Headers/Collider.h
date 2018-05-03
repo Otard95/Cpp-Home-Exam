@@ -3,6 +3,7 @@
 
 #include "Component.h"
 #include <memory>
+#include "Vector2.h"
 
 namespace CDP {
 
@@ -11,6 +12,10 @@ namespace CDP {
 	public:
 
 		Transform& transform;
+
+		Vector2<double> bound_size;
+		double size;
+		double extent;
 
 		Collider(std::vector<std::shared_ptr<Component>>&,
 						 GameObject&,
