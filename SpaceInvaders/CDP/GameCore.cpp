@@ -50,8 +50,8 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 
 	if(type == "Transform")
 	{
-		auto x = jo["pos"]["x"];
-		auto y = jo["pos"]["y"];
+		const auto x = jo["pos"]["x"];
+		const auto y = jo["pos"]["y"];
 		CreateTransform(go.GetComponents(), go);
 		m_transforms.back().SetPosition(x, y);
 	}
@@ -62,26 +62,19 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 	}
 	else if (type == "Collider")
 	{
+		auto bound_size = Vector2<double>(jo["x"], jo["y"]);
 		CreateCollider(go.GetComponents(), go);
+		m_colliders.back().UpdateSize(bound_size);
 	}
 	else if (type == "Rigidbody")
 	{
-		
+		const auto is_kinematic = jo["is_kinematic"];
+		const auto use_gravity = jo["use_gravity"];
 		CreateRigidbody(go.GetComponents(), go);
+		m_rigidbodies.back().m_use_gravity = use_gravity;
+		m_rigidbodies.back().m_is_kinematic = is_kinematic;
 
 	}
-	
-	
-	//const std::string str = it.key();
-
-	//if (it.key() == "PlayerControls")
-	//{
-	//	//TO DO: add player component.
-	//}
-	//else if (it.key() == "Transform")
-	//{
-	//	CreateCollider()
-	//}
 }
 
 // end
