@@ -21,10 +21,10 @@ namespace CDP {
 		SDL_Rect m_coords;
 
 		// Required Components
-		std::shared_ptr<Transform> m_transform;
+		Transform* m_transform;
 
 	public:
-		Sprite(std::vector<std::shared_ptr<Component>> &components, GameObject&, std::string);
+		Sprite(std::vector<Component*> &components, GameObject&, std::string);
 		~Sprite();
 
 		void Start() override;

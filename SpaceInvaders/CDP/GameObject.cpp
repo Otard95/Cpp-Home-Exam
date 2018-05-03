@@ -6,12 +6,18 @@ using namespace CDP;
 
 GameObject::GameObject(const std::string str)
 {
+	//std::cout << str << std::endl;
 	m_name = str;
+}
 
-	int i = 1;
+std::string GameObject::GetName() const
+{
+	return m_name;
+}
 
-	
-	std::cout << m_name << std::endl;
+std::vector<Component*>& GameObject::GetComponents()
+{
+	return m_components;
 }
 
 GameObject::~GameObject()

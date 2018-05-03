@@ -6,6 +6,9 @@
 namespace CDP {
 
 	class GameCore {
+	private:
+		void AddComponent(GameObject& go, std::string type, nlohmann::json& jo);
+
 	public:
 		// Richard
 		static GameCore& instance() {
@@ -18,13 +21,15 @@ namespace CDP {
 		GameCore();
 		~GameCore();
 
-		void static Instantiate(nlohmann::json&);
-		void static Destroy(GameObject*);
+		void Instantiate(nlohmann::json&);
+		void Destroy(GameObject*);
+
+		
 		// end
 
 		// Stian
 
-		std::shared_ptr<Transform> CreateTransform(std::vector<std::shared_ptr<Component>> &, GameObject&);
+		void CreateTransform(std::vector<Component*>&, GameObject&);
 		std::shared_ptr<Transform> CreateRigidbody(std::vector<std::shared_ptr<Component>>& components, GameObject& go);
 		std::shared_ptr<Transform> CreateCollider(std::vector<std::shared_ptr<Component>>& components, GameObject& go, Transform& transform);
 

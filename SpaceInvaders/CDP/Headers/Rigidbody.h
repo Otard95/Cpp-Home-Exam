@@ -14,8 +14,7 @@ namespace CDP {
 		Transform & transform;
 
 		Vector2<double> velocity;
-
-		Rigidbody(std::vector<std::shared_ptr<Component>> &components,
+		Rigidbody(std::vector<Component*> &components,
 							GameObject& go,
 							Collider &,
 							Transform&);

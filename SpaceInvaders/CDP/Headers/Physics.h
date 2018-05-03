@@ -9,11 +9,11 @@ namespace CDP {
 
 	class Physics {
 
-		Physics () = default;
+		Physics ();
 		static Physics m_instance;
 
-		std::shared_ptr<std::vector<Rigidbody>> m_rigidbodies;
-		std::shared_ptr<std::vector<Collider>> m_colliders;
+		std::vector<Rigidbody>* m_rigidbodies;
+		std::vector<Collider>* m_colliders;
 		//std::shared_ptr<std::vector<Transform>> m_transforms;
 
 	public:

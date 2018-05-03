@@ -1,9 +1,12 @@
 #include "Headers/Physics.h"
-#include "Headers/Vector2.h"
 #include "Headers/Transform.h"
 
 using namespace CDP;
 
+Physics::Physics()
+	: m_rigidbodies(nullptr)
+	, m_colliders(nullptr)
+{}
 
 Physics& Physics::Instance() {
 	static Physics m_instance;
@@ -14,8 +17,8 @@ Physics& Physics::Init(std::vector<Rigidbody> * rigidbodies,
 											 std::vector<Collider> * colliders
 											 /*std::vector<Transform> * transforms*/)
 {
-	m_rigidbodies = std::shared_ptr<std::vector<Rigidbody>> (rigidbodies);
-	m_colliders = std::shared_ptr<std::vector<Collider>> (colliders);
+	m_rigidbodies = rigidbodies;
+	m_colliders = colliders;
 	//m_transforms = std::shared_ptr<std::vector<Transform>> (transforms);
 
 	return m_instance;

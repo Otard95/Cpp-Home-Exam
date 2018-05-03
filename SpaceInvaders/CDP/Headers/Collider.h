@@ -17,7 +17,7 @@ namespace CDP {
 		double size;
 		double extent;
 
-		Collider(std::vector<std::shared_ptr<Component>>&,
+		Collider(std::vector<Component*>&,
 						 GameObject&,
 						 Transform&);
 		~Collider() = default;
