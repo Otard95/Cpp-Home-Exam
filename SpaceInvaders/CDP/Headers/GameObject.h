@@ -27,10 +27,6 @@ namespace CDP {
 		~GameObject();
 
 		void Update ();
-
-		void static Instantiate(nlohmann::json&);
-		void static Destroy(GameObject*);
-
 	};
 
 }
