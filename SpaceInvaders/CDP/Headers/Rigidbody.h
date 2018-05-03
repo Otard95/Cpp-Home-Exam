@@ -2,7 +2,6 @@
 #define __RIGIDBODY_COMPONENT_H__
 
 #include <memory>
-#include "RigidbodyCore.h"
 #include "Component.h"
 
 namespace CDP {

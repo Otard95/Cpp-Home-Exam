@@ -52,6 +52,4 @@ std::shared_ptr<Transform> GameCore::CreateCollider(std::vector<std::shared_ptr<
 	m_colliders.emplace_back(Collider(components, go, transform));
 	return std::make_shared<Collider>(m_colliders.back());
 }
-
-
 // end

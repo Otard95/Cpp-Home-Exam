@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include "GameObject.h"
 #include "../../nlohmann_json/json.hpp"
 #include "CDP.h"
 
@@ -35,7 +34,7 @@ namespace CDP {
 		std::vector<Rigidbody> m_rigidbodies;
 		std::vector<Collider> m_colliders;
 		std::vector<Transform> m_transforms;
-
+		std::vector<Sprite> m_sprites;
 
 		//end
 	};

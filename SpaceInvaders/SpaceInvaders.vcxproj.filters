@@ -42,9 +42,6 @@
     <ClInclude Include="CDP\Headers\Collider.h">
       <Filter>CDP\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="CDP\Headers\ColliderCore.h">
-      <Filter>CDP\Headers</Filter>
-    </ClInclude>
     <ClInclude Include="CDP\Headers\Color.h">
       <Filter>CDP\Headers</Filter>
     </ClInclude>
@@ -58,9 +55,6 @@
       <Filter>CDP\Headers</Filter>
     </ClInclude>
     <ClInclude Include="CDP\Headers\Rigidbody.h">
-      <Filter>CDP\Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="CDP\Headers\RigidbodyCore.h">
       <Filter>CDP\Headers</Filter>
     </ClInclude>
     <ClInclude Include="CDP\Headers\Sprite.h">

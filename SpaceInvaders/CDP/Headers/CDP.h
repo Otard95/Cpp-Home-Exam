@@ -9,8 +9,6 @@
 #include "Color.h"
 #include "Vector2.h"
 #include "Physics.h"
-#include "ColliderCore.h"
-#include "RigidbodyCore.h"
 #include "Collider.h"
 #include "Rigidbody.h"
 #include "Triplet.h"

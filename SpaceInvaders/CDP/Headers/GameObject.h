@@ -27,6 +27,7 @@ namespace CDP {
 		~GameObject();
 
 		void Update ();
+		
 	};
 
 }
