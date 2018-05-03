@@ -5,9 +5,11 @@ using namespace CDP;
 
 Rigidbody::Rigidbody(std::vector<std::shared_ptr<Component>> &components,
 										 GameObject& go,
-										 RigidbodyCore& core)
+										 Collider& col,
+										 Transform& trans)
 :	Component(components, go)
-,	m_core(core)
+,	collider(col)
+,	transform(trans)
 {}
 
 void Rigidbody::Start(){}

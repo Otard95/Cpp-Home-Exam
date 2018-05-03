@@ -5,9 +5,9 @@ using namespace CDP;
 
 Collider::Collider(std::vector<std::shared_ptr<Component>> &components,
 									 GameObject& go,
-									 ColliderCore & core)
+									 Transform& trans)
 	: Component(components, go)
-	, m_core(core)
+	, transform(trans)
 {}
 
 void Collider::Start() {

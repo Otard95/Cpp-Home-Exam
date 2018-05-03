@@ -20,6 +20,14 @@ namespace CDP {
 
 		// Stian
 
+		/**
+		 * ## Components
+		*/
+		std::vector<Rigidbody> m_rigidbodies;
+		std::vector<Collider> m_colliders;
+		std::vector<Transform> m_transforms;
+
+
 		//end
 	};
 

@@ -10,11 +10,13 @@ namespace CDP {
 	class Rigidbody : public Component {
 	public:
 
-		RigidbodyCore& m_core;
+		Collider & collider;
+		Transform & transform;
 
 		Rigidbody(std::vector<std::shared_ptr<Component>> &components,
 							GameObject& go,
-							RigidbodyCore& core);
+							Collider &,
+							Transform&);
 		~Rigidbody() = default;
 
 		void Start () override;

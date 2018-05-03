@@ -11,9 +11,11 @@ namespace CDP {
 
 	public:
 
-		ColliderCore & m_core;
+		Transform& transform;
 
-		Collider(std::vector<std::shared_ptr<Component>> &components, GameObject&, ColliderCore &core);
+		Collider(std::vector<std::shared_ptr<Component>>&,
+						 GameObject&,
+						 Transform&);
 		~Collider() = default;
 
 		void Start() override;
