@@ -8,8 +8,12 @@ Collider::Collider(std::vector<Component*> &components,
 									 GameObject& go,
 									 Transform& trans)
 	: Component(components, go)
-	, transform(trans) {
-}
+	, m_bound_size(Vector2<double>())
+	, m_size(0)
+	, m_extent(0)
+	, transform(trans)
+	, is_trigger(false)
+{}
 
 void Collider::Start() {
 
