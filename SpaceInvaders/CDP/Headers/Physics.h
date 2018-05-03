@@ -18,7 +18,7 @@ namespace CDP {
 
 	public:
 		static Physics& Instance ();
-		Physics& Init (std::vector<Rigidbody> * rigidbodies,
+		void Init (std::vector<Rigidbody> * rigidbodies,
 									 std::vector<Collider> * colliders
 									 /*std::vector<Transform> * transforms*/);
 		Physics (Physics const &) = delete;

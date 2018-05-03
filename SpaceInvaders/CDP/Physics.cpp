@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "Headers/Physics.h"
 #include "Headers/Transform.h"
 
@@ -13,7 +14,7 @@ Physics& Physics::Instance() {
 	return m_instance;
 }
 
-Physics& Physics::Init(std::vector<Rigidbody> * rigidbodies,
+void Physics::Init(std::vector<Rigidbody> * rigidbodies,
 											 std::vector<Collider> * colliders
 											 /*std::vector<Transform> * transforms*/)
 {
@@ -21,12 +22,12 @@ Physics& Physics::Init(std::vector<Rigidbody> * rigidbodies,
 	m_colliders = colliders;
 	//m_transforms = std::shared_ptr<std::vector<Transform>> (transforms);
 
-	return m_instance;
+	//return m_instance;
 }
 
 void Physics::Update () {
 
-	if (!m_rigidbodies) return;
+	if (m_rigidbodies == nullptr) return;
 
 	std::for_each(m_rigidbodies->begin(), m_rigidbodies->end(), [&] (Rigidbody& rb) {
 		std::for_each(m_colliders->begin(), m_colliders->end(), [&] (Collider& col) {
