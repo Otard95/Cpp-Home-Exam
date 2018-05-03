@@ -12,7 +12,7 @@ namespace CDP {
 		Collider & collider;
 		Transform & transform;
 
-		Rigidbody(std::vector<std::shared_ptr<Component>> &components,
+		Rigidbody(std::vector<Component*> &components,
 							GameObject& go,
 							Collider &,
 							Transform&);

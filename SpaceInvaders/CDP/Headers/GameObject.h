@@ -15,7 +15,7 @@ namespace CDP {
 		static std::vector<GameObject> m_game_objects;
 
 		std::string m_name;
-		std::vector<std::shared_ptr <Component>> m_components;
+		std::vector<Component*> m_components;
 
 	public:
 		GameObject(const std::string str);
@@ -24,7 +24,7 @@ namespace CDP {
 
 		std::string GetName() const;
 
-		std::vector<std::shared_ptr<Component>>& GetComponents();
+		std::vector<Component*>& GetComponents();
 
 		void Update ();
 		

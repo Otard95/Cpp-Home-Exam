@@ -6,7 +6,7 @@
 
 using namespace CDP;
 
-Sprite::Sprite(std::vector<std::shared_ptr<Component>> &components,
+Sprite::Sprite(std::vector<Component*> &components,
 							 GameObject& gobj,
 							 std::string texture_file)
 	: Component(components, gobj)

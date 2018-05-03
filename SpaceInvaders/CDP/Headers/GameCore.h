@@ -29,7 +29,7 @@ namespace CDP {
 
 		// Stian
 
-		void CreateTransform(std::vector<std::shared_ptr<Component>>&, GameObject&);
+		void CreateTransform(std::vector<Component*>&, GameObject&);
 		std::shared_ptr<Transform> CreateRigidbody(std::vector<std::shared_ptr<Component>>& components, GameObject& go);
 		std::shared_ptr<Transform> CreateCollider(std::vector<std::shared_ptr<Component>>& components, GameObject& go, Transform& transform);
 

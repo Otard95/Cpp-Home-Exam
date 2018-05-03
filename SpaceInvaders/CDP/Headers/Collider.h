@@ -12,7 +12,7 @@ namespace CDP {
 
 		Transform& transform;
 
-		Collider(std::vector<std::shared_ptr<Component>>&,
+		Collider(std::vector<Component*>&,
 						 GameObject&,
 						 Transform&);
 		~Collider() = default;

@@ -15,7 +15,7 @@ std::string GameObject::GetName() const
 	return m_name;
 }
 
-std::vector<std::shared_ptr<Component>>& GameObject::GetComponents()
+std::vector<Component*>& GameObject::GetComponents()
 {
 	return m_components;
 }

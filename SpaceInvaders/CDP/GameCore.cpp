@@ -70,12 +70,12 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 
 // Stian
 
-void GameCore::CreateTransform(std::vector<std::shared_ptr<Component>> &components, GameObject& go )
+void GameCore::CreateTransform(std::vector<Component*> &components, GameObject& go )
 {
 
 	m_transforms.emplace_back(components, go);
 
-	components.push_back(std::shared_ptr<Transform>(&m_transforms.back()));
+	components.push_back(&m_transforms.back());
 
 	/*std::shared_ptr<Transform> trans = std::make_shared<Transform>(components, go);
 

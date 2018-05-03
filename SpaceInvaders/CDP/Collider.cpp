@@ -3,7 +3,7 @@
 
 using namespace CDP;
 
-Collider::Collider(std::vector<std::shared_ptr<Component>> &components,
+Collider::Collider(std::vector<Component*> &components,
 									 GameObject& go,
 									 Transform& trans)
 	: Component(components, go)
