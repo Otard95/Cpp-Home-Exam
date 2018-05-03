@@ -17,7 +17,6 @@ GameCore::~GameCore()
 	m_colliders.clear();
 	m_rigidbodies.clear();
 	m_sprites.clear();
-	
 	m_game_objects.clear();
 	
 }
@@ -51,7 +50,21 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 
 	if(type == "Transform")
 	{
+		auto x = jo["pos"]["x"];
+		auto y = jo["pos"]["y"];
 		CreateTransform(go.GetComponents(), go);
+		m_transforms.back().SetPosition(x, y);
+	}else if(type == "Sprite")
+	{
+		CreateSprite(go.GetComponents(), go);
+	}
+	else if (type == "Rigidbody")
+	{
+		CreateRigidbody(go.GetComponents(), go);
+	}
+	else if (type == "Collider")
+	{
+		CreateCollider(go.GetComponents(), go);
 	}
 	
 	//const std::string str = it.key();
@@ -72,42 +85,25 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 
 void GameCore::CreateTransform(std::vector<Component*> &components, GameObject& go )
 {
-
 	m_transforms.emplace_back(components, go);
-
 	components.push_back(&m_transforms.back());
-
-	/*std::shared_ptr<Transform> trans = std::make_shared<Transform>(components, go);
-
-	std::cout << trans << std::endl;
-
-	m_transforms.emplace_back(std::move(*trans));
-	components.emplace_back(std::move(trans));
-
-	std::cout << &m_transforms.back() << std::endl;
-	std::cout << components.back() << std::endl;*/
-
-	/*
-	m_transforms.emplace_back(Transform(components, go));
-	std::shared_ptr<Transform> ptr = std::shared_ptr<Transform>(&m_transforms.back());
-	components.emplace_back(ptr);
-
-	/*
-	m_transforms.emplace_back(Transform(components, go));
-	components.emplace_back(std::shared_ptr<Transform>(&m_transforms.back()));*/
 }
 
-std::shared_ptr<Transform> GameCore::CreateRigidbody(std::vector<std::shared_ptr<Component>> &components, GameObject& go)
-{/*
-	m_rigidbodies.emplace_back(Rigidbody(components, go));
-	return std::make_shared<Rigidbody>(m_rigidbodies.back());*/
-	return nullptr;
+void GameCore::CreateSprite(std::vector<Component*> &components, GameObject& go)
+{
+	m_sprites.emplace_back(components, go);
+	components.push_back(&m_sprites.back());
 }
 
-std::shared_ptr<Transform> GameCore::CreateCollider(std::vector<std::shared_ptr<Component>> &components, GameObject& go, Transform& tranform)
-{/*
-	m_colliders.emplace_back(Collider(components, go, transform));
-	return std::make_shared<Collider>(m_colliders.back());*/
-	return nullptr;
+void GameCore::CreateRigidbody(std::vector<Component*>& components, GameObject& go)
+{
+	m_rigidbodies.emplace_back(components, go);
+	components.push_back(&m_rigidbodies.back());
+}
+
+void GameCore::CreateCollider(std::vector<Component*> &components, GameObject& go)
+{
+	m_colliders.emplace_back(components, go);
+	components.push_back(&m_colliders.back());
 }
 // end

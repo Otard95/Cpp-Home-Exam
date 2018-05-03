@@ -40,4 +40,5 @@ void Transform::SetPosition(double x, double y)
 {
 	m_position.x = x;
 	m_position.y = y;
+	std::cout << "position set to " << x << ", " << y << std::endl;
 }
