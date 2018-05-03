@@ -9,8 +9,6 @@ namespace CDP {
 	class Transform;
 	class Canvas;
 	class Physics;
-	struct ColliderCore;
-	struct RigidbodyCore;
 	class Rigidbody;
 	class Collider;
 
