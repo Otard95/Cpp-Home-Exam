@@ -1,7 +1,6 @@
 #ifndef __COLLIDER_COMPONENT_H__
 #define __COLLIDER_COMPONENT_H__
 
-#include "ColliderCore.h"
 #include "Component.h"
 #include <memory>
 

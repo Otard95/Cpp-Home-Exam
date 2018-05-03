@@ -151,7 +151,6 @@
     <ClInclude Include="CDP\Headers\CDP.h" />
     <ClInclude Include="CDP\Headers\CDP_fwd.h" />
     <ClInclude Include="CDP\Headers\Collider.h" />
-    <ClInclude Include="CDP\Headers\ColliderCore.h" />
     <ClInclude Include="CDP\Headers\Color.h" />
     <ClInclude Include="CDP\Headers\Component.h" />
     <ClInclude Include="CDP\Headers\GameCore.h" />
@@ -161,7 +160,6 @@
     <ClInclude Include="CDP\Headers\MouseButtons.h" />
     <ClInclude Include="CDP\Headers\Physics.h" />
     <ClInclude Include="CDP\Headers\Rigidbody.h" />
-    <ClInclude Include="CDP\Headers\RigidbodyCore.h" />
     <ClInclude Include="CDP\Headers\Sprite.h" />
     <ClInclude Include="CDP\Headers\Transform.h" />
     <ClInclude Include="CDP\Headers\Triplet.h" />

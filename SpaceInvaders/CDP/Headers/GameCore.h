@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "../../nlohmann_json/json.hpp"
 #include "CDP.h"
 
 namespace CDP {
@@ -16,6 +17,9 @@ namespace CDP {
 
 		GameCore();
 		~GameCore();
+
+		void static Instantiate(nlohmann::json&);
+		void static Destroy(GameObject*);
 		// end
 
 		// Stian
