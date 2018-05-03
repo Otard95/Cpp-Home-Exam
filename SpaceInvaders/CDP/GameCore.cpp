@@ -34,4 +34,10 @@ void GameCore::Destroy(GameObject* go)
 
 // Stian
 
+std::shared_ptr<Transform> GameCore::CreateTransform(std::vector<std::shared_ptr<Component>> &components, GameObject& go )
+{
+	m_transforms.push_back(Transform(components, go));
+}
+
+
 // end
