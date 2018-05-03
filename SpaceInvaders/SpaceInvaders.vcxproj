@@ -188,10 +188,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="json_game_save_draft.json" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="SpaceInvaders.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

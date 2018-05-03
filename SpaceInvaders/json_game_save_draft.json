@@ -1,0 +1,51 @@
+{
+	"prefabs": {
+		"player": {
+			"components": {
+				"Transform": {
+					"pos": { "x": 231, "y": 957 }
+				}
+			}
+		},
+		"enemy": {
+
+		},
+		"obstacle": {
+
+		}
+	},
+	"scene": [
+		{
+			"name": "Player",
+			"components": {
+				"Transform": {
+					"pos": { "x": 10, "y": 10 },
+					"scale": { "x": 1, "y": 1 }
+				},
+				"PlayerControlls": {
+					"moveSpeed": 5,
+					"fireRate": 3
+				}
+			}
+		},
+		{
+			"name": "Invader1",
+			"components": {
+				"Transform": {
+					"pos": {
+						"x": 543,
+						"y": 234
+					},
+					"scale": {
+						"x": 1,
+						"y": 1
+					}
+				},
+				"AI": {
+					"moveSpeed": 5,
+					"fireRate": 3
+				}
+			}
+		}
+	]
+}

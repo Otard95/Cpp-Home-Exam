@@ -125,10 +125,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="SpaceInvaders.rc">
+    <None Include="json_game_save_draft.json">
       <Filter>Resource Files</Filter>
-    </ResourceCompile>
+    </None>
   </ItemGroup>
 </Project>

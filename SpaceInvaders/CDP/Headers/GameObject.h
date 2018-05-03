@@ -5,14 +5,15 @@
 #include <memory>
 #include <string>
 #include "CDP_fwd.h"
+#include "RigidbodyCore.h"
+#include "ColliderCore.h"
 #include "Triplet.h"
 #include "Vector2.h"
-#include "../nlohmann_json/json.hpp"
+#include "../../nlohmann_json/json.hpp"
 
 namespace CDP {
 
 	class GameObject {
-
 		static std::vector<GameObject> m_game_objects;
 
 		std::string m_name;

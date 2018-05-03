@@ -9,3 +9,5 @@ Rigidbody::Rigidbody(std::vector<std::shared_ptr<Component>> &components,
 :	Component(components, go)
 ,	m_core(core)
 {}
+
+void Rigidbody::Start(){}
