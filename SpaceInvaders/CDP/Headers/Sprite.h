@@ -24,7 +24,7 @@ namespace CDP {
 		Transform* m_transform;
 
 	public:
-		Sprite(std::vector<Component*> &components, GameObject&, std::string);
+		Sprite(std::vector<Component*> &components, GameObject&, std::string&);
 		~Sprite();
 
 		void Start() override;

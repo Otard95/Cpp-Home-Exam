@@ -23,6 +23,8 @@ namespace CDP {
 
 			T* out = nullptr;
 
+			std::cout << m_sibling_components.size() << std::endl;
+
 			std::for_each(m_sibling_components.begin(),
 										m_sibling_components.end(),
 										[&out](Component* c) {

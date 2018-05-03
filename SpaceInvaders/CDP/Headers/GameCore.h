@@ -8,6 +8,11 @@ namespace CDP {
 	class GameCore {
 	private:
 		void AddComponent(GameObject& go, std::string type, nlohmann::json& jo);
+		bool m_running;
+		Canvas& m_canvas;
+		InputManager& m_input;
+		Physics& m_physics;
+		Time& m_time;
 
 	public:
 		// Richard
@@ -21,8 +26,11 @@ namespace CDP {
 		GameCore();
 		~GameCore();
 
-		void Instantiate(nlohmann::json&);
+		void Initialize(nlohmann::json&);
+		void Instantiate(nlohmann::json & jsonObject);
 		void Destroy(GameObject*);
+
+		void Run();
 
 		
 		// end
@@ -33,6 +41,8 @@ namespace CDP {
 		void CreateSprite(std::vector<Component*>& components, GameObject& go, std::string texture);
 		void CreateRigidbody(std::vector<Component*>& components, GameObject& go);
 		void CreateCollider(std::vector<Component*>& components, GameObject& go);
+		
+	
 
 		/**
 		 * ## Components

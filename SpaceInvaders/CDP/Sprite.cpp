@@ -8,7 +8,7 @@ using namespace CDP;
 
 Sprite::Sprite(std::vector<Component*> &components,
 							 GameObject& gobj,
-							 std::string texture_file)
+							 std::string& texture_file)
 	: Component(components, gobj)
 	, m_renderer(Canvas::Instance().GetRenderer())
 	, m_texture_file(texture_file)
@@ -23,10 +23,15 @@ void Sprite::Start() {
 
 	m_transform = GetComponent<Transform>();
 
+	if (m_transform == nullptr)
+	{
+		std::cout << "Sprite - Could not get Transform component" << std::endl;
+	}
+
 	SDL_Surface* surface = SDL_LoadBMP(m_texture_file.c_str());
 	// Make sure the surface was loaded.
 	if (surface == nullptr) {
-		std::cerr << "Sprite - Failed to load texture image: "
+		std::cout << "Sprite - Failed to load surface image: "
 			<< SDL_GetError() << std::endl;
 		return;
 	}
@@ -56,6 +61,8 @@ void Sprite::Start() {
 }
 
 void Sprite::Update() {
+
+	std::cout << "heelo" << std::endl;
 
 	m_transform->SetPosition(60, 60);
 	// Update coords

@@ -13,6 +13,7 @@
 #include "Rigidbody.h"
 #include "Triplet.h"
 #include "Time.h"
+#include "InputManager.h"
 
 #endif // !__CDP_FWD_H__
 

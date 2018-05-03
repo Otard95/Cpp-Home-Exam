@@ -1,13 +1,20 @@
 #include "Headers/GameCore.h"
 #include <iostream>
-
+#include <algorithm>
 
 using namespace CDP;
 
 // Richard
 
 GameCore::GameCore()
+	: m_running(false)
+	, m_canvas(Canvas::Instance())
+	, m_input(InputManager::Instance())
+	, m_physics(Physics::Instance())
+	, m_time(Time::Instance())
 {
+	//m_canvas.SetTitle(std::string("Space Invaders Pro"));
+	m_physics.Init(&m_rigidbodies, &m_colliders);
 }
 
 
@@ -21,21 +28,44 @@ GameCore::~GameCore()
 	
 }
 
-void GameCore::Instantiate(nlohmann::json& jsonObject)
+void GameCore::Initialize(nlohmann::json& jsonObject)
 {
 	if (jsonObject.find("scene") != jsonObject.end())
 	{
 		for (nlohmann::json::iterator it = jsonObject["scene"].begin(); it != jsonObject["scene"].end(); ++it)
 		{
-			m_game_objects.emplace_back(GameObject(it.value()["name"].get<std::string>()));
-			
-			if(it.value().find("components") != it.value().end())
-			{
-				for (nlohmann::json::iterator comp = it.value()["components"].begin(); comp != it.value()["components"].end(); ++comp)
-				{
-					AddComponent(m_game_objects.back(), comp.value()["type"], comp.value());
-				}
-			}		
+			Instantiate(it.value());
+		}
+	}
+
+	std::for_each(m_rigidbodies.begin(), m_rigidbodies.end(), [](Rigidbody& c) {
+		c.Start();
+	});
+
+	std::for_each(m_colliders.begin(), m_colliders.end(), [](Collider& c) {
+		c.Start();
+	});
+
+	std::for_each(m_transforms.begin(), m_transforms.end(), [](Transform& c) {
+		c.Start();
+	});
+
+	std::for_each(m_sprites.begin(), m_sprites.end(), [](Sprite& c) {
+		c.Start();
+	});
+
+	m_running = true;
+}
+
+void GameCore::Instantiate(nlohmann::json& jsonObject)
+{
+	m_game_objects.emplace_back(jsonObject["name"].get<std::string>());
+
+	if (jsonObject.find("components") != jsonObject.end())
+	{
+		for (nlohmann::json::iterator comp = jsonObject["components"].begin(); comp != jsonObject["components"].end(); ++comp)
+		{
+			AddComponent(m_game_objects.back(), comp.value()["type"], comp.value());
 		}
 	}
 }
@@ -104,4 +134,34 @@ void GameCore::CreateCollider(std::vector<Component*> &components, GameObject& g
 	std::cout << "added collider" << std::endl;
 	components.push_back(&m_colliders.back());
 }
-// end
+
+void GameCore::Run()
+{
+	while(m_running)
+	{		
+		m_input.Update();
+		m_time.Update();
+		m_physics.Update();
+
+		std::for_each(m_rigidbodies.begin(), m_rigidbodies.end(), [] (Rigidbody& c) {
+			c.Update();
+		});
+
+		std::for_each(m_colliders.begin(), m_colliders.end(), [] (Collider& c) {
+			c.Update();
+		});
+
+		std::for_each(m_transforms.begin(), m_transforms.end(), [] (Transform& c) {
+			c.Update();
+		});
+
+		std::for_each(m_sprites.begin(), m_sprites.end(), [] (Sprite& c) {
+			c.Update();
+		});
+
+		m_canvas.RenderFrame();
+
+		if (m_input.GetKey(Keys::Esc)) m_running = false;
+
+	}
+}
