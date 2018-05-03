@@ -1,4 +1,6 @@
-#include "GameCore.h"
+#include "Headers/GameCore.h"
+
+using namespace CDP;
 
 // Richard
 

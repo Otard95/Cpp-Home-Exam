@@ -154,6 +154,7 @@
     <ClInclude Include="CDP\Headers\ColliderCore.h" />
     <ClInclude Include="CDP\Headers\Color.h" />
     <ClInclude Include="CDP\Headers\Component.h" />
+    <ClInclude Include="CDP\Headers\GameCore.h" />
     <ClInclude Include="CDP\Headers\GameObject.h" />
     <ClInclude Include="CDP\Headers\InputManager.h" />
     <ClInclude Include="CDP\Headers\Keys.h" />
@@ -173,6 +174,7 @@
     <ClCompile Include="CDP\Canvas.cpp" />
     <ClCompile Include="CDP\Collider.cpp" />
     <ClCompile Include="CDP\Component.cpp" />
+    <ClCompile Include="CDP\GameCore.cpp" />
     <ClCompile Include="CDP\GameObject.cpp" />
     <ClCompile Include="CDP\InputManager.cpp" />
     <ClCompile Include="CDP\Physics.cpp" />

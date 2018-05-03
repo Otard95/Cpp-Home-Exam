@@ -3,8 +3,6 @@
 
 using namespace CDP;
 
-std::vector<GameObject> GameObject::m_game_objects;
-
 GameObject::GameObject(nlohmann::json& jsonObject)
 {
 	m_name = jsonObject["name"].get<std::string>();

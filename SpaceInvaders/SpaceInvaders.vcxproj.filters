@@ -87,6 +87,9 @@
     <ClInclude Include="nlohmann_json\json.hpp">
       <Filter>nlohmann/json</Filter>
     </ClInclude>
+    <ClInclude Include="CDP\Headers\GameCore.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -120,6 +123,9 @@
       <Filter>CDP</Filter>
     </ClCompile>
     <ClCompile Include="CDP\InputManager.cpp">
+      <Filter>CDP</Filter>
+    </ClCompile>
+    <ClCompile Include="CDP\GameCore.cpp">
       <Filter>CDP</Filter>
     </ClCompile>
   </ItemGroup>
