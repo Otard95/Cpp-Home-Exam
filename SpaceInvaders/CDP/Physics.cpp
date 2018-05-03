@@ -46,15 +46,15 @@ void Physics::Update () {
 			double dist = (col.transform.Position()
 										 - rb.transform.Position()).Length();
 
-			double conbinedExtent = col.extent + rb.collider.extent;
+			double conbinedExtent = col.Extent() + rb.collider.Extent();
 
 			if (dist < conbinedExtent) {
 				// Do proppor collition check
 
 				const Vector2<double>& pos1 = rb.transform.Position();
 				const Vector2<double>& pos2 = col.transform.Position();
-				Vector2<double> ex1 = rb.collider.bound_size / 2;
-				Vector2<double> ex2 = col.bound_size / 2;
+				Vector2<double> ex1 = rb.collider.BoundsSize() / 2;
+				Vector2<double> ex2 = col.BoundsSize() / 2;
 				/*left = max(r1.left, r2.left)
 					right = min(r1.right, r2.right)
 					bottom = min(r1.bottom, r2.bottom)

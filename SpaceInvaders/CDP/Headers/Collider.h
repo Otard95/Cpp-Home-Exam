@@ -28,6 +28,9 @@ namespace CDP {
 		void UpdateSize(Vector2<double>&);
 		void UpdateSize(double x, double y);
 
+		Vector2<double> BoundsSize();
+		double Size();
+		double Extent();
 
 		void OnCollision(Collider&);
 
