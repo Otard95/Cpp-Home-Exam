@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "GameObject.h"
+#include "CDP.h"
 
 namespace CDP {
 
@@ -19,6 +20,8 @@ namespace CDP {
 		// end
 
 		// Stian
+
+		std::shared_ptr<Transform> CreateTransform(std::vector<std::shared_ptr<Component>> &, GameObject&);
 
 		/**
 		 * ## Components
