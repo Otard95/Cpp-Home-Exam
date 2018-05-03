@@ -13,6 +13,13 @@ GameCore::GameCore()
 
 GameCore::~GameCore()
 {
+	m_transforms.clear();
+	m_colliders.clear();
+	m_rigidbodies.clear();
+	m_sprites.clear();
+	
+	m_game_objects.clear();
+	
 }
 
 void GameCore::Instantiate(nlohmann::json& jsonObject)
@@ -21,13 +28,13 @@ void GameCore::Instantiate(nlohmann::json& jsonObject)
 	{
 		for (nlohmann::json::iterator it = jsonObject["scene"].begin(); it != jsonObject["scene"].end(); ++it)
 		{
-			GameObject go(it.value()["name"].get<std::string>());
+			m_game_objects.emplace_back(GameObject(it.value()["name"].get<std::string>()));
 			
 			if(it.value().find("components") != it.value().end())
 			{
 				for (nlohmann::json::iterator comp = it.value()["components"].begin(); comp != it.value()["components"].end(); ++comp)
 				{
-					AddComponent(go, comp.key(), comp.value());
+					AddComponent(m_game_objects.back(), comp.key(), comp.value());
 				}
 			}		
 		}
@@ -65,7 +72,12 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 
 void GameCore::CreateTransform(std::vector<std::shared_ptr<Component>> &components, GameObject& go )
 {
-	std::shared_ptr<Transform> trans = std::make_shared<Transform>(components, go);
+
+	m_transforms.emplace_back(components, go);
+
+	components.push_back(std::shared_ptr<Transform>(&m_transforms.back()));
+
+	/*std::shared_ptr<Transform> trans = std::make_shared<Transform>(components, go);
 
 	std::cout << trans << std::endl;
 
@@ -73,7 +85,7 @@ void GameCore::CreateTransform(std::vector<std::shared_ptr<Component>> &componen
 	components.emplace_back(std::move(trans));
 
 	std::cout << &m_transforms.back() << std::endl;
-	std::cout << components.back() << std::endl;
+	std::cout << components.back() << std::endl;*/
 
 	/*
 	m_transforms.emplace_back(Transform(components, go));
