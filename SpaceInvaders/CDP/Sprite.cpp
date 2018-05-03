@@ -62,12 +62,11 @@ void Sprite::Start() {
 
 void Sprite::Update() {
 
-	std::cout << "heelo" << std::endl;
-
-	m_transform->SetPosition(60, 60);
 	// Update coords
 	m_coords.x = m_transform->Position().x - m_anchor_point_offset.x;
 	m_coords.y = m_transform->Position().y - m_anchor_point_offset.y;
+
+	//m_transform->SetPosition(m_coords.x, m_coords.y);
 	// Render Sprite
 	if (m_texture != nullptr) SDL_RenderCopy(m_renderer, m_texture, nullptr, &m_coords);
 

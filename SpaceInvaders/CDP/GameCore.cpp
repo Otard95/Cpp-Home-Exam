@@ -163,5 +163,16 @@ void GameCore::Run()
 
 		if (m_input.GetKey(Keys::Esc)) m_running = false;
 
+		if (m_input.GetKey(Keys::D))
+		{
+			auto transform = m_game_objects.at(0).GetComponents()[0]->GetComponent<Transform>();
+			transform->SetPosition(transform->Position().x + 1, transform->Position().y);
+		}
+		else if (m_input.GetKey(Keys::A))
+		{
+			auto transform = m_game_objects.at(0).GetComponents()[0]->GetComponent<Transform>();
+			transform->SetPosition(transform->Position().x - 1, transform->Position().y);
+		}
+
 	}
 }
