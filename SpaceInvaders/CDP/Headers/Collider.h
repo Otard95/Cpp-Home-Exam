@@ -8,13 +8,13 @@ namespace CDP {
 
 	class Collider : public Component {
 
+		Vector2<double> m_bound_size;
+		double m_size;
+		double m_extent;
+
 	public:
 
 		Transform& transform;
-
-		Vector2<double> bound_size;
-		double size;
-		double extent;
 
 		bool is_trigger;
 
@@ -24,6 +24,10 @@ namespace CDP {
 		~Collider() = default;
 
 		void Start() override;
+
+		void UpdateSize(Vector2<double>&);
+		void UpdateSize(double x, double y);
+
 
 		void OnCollision(Collider&);
 

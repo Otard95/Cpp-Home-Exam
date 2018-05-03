@@ -33,10 +33,10 @@ void Physics::Update () {
 
 
 		if (!rb.m_is_kinematic) {
+			rb.transform.Translate(rb.velocity * m_time.DeltaTime());
+
 			if (rb.m_use_gravity)
 				rb.velocity.y += 9.81 * m_time.DeltaTime();
-
-			rb.transform.Translate(rb.velocity * m_time.DeltaTime());
 		}
 
 		std::for_each(m_colliders->begin(), m_colliders->end(), [&](Collider& col) {
