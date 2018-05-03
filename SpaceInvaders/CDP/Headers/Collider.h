@@ -32,7 +32,7 @@ namespace CDP {
 		double Size();
 		double Extent();
 
-		void OnCollision(Collider&);
+		void CollisionEvent(Collider&);
 
 	};
 

@@ -68,8 +68,8 @@ void Physics::Update () {
 				if (l < r && b < t) {
 					// Collition
 
-					rb.collider.OnCollision(col);
-					col.OnCollision(rb.collider);
+					rb.collider.CollisionEvent(col);
+					col.CollisionEvent(rb.collider);
 
 					if (rb.collider.is_trigger) return;
 

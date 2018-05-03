@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "Headers/Collider.h"
 #include "Headers/Physics.h"
 
@@ -42,5 +43,10 @@ double Collider::Extent() {
 	return m_extent;
 }
 
-void CDP::Collider::OnCollision(Collider &) {
+void Collider::CollisionEvent(Collider& collider) {
+	
+	std::for_each(m_sibling_components.begin(), m_sibling_components.end(), [&collider] (Component* c) {
+		c->OnCollision(collider);
+	});
+
 }

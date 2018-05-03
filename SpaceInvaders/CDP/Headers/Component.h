@@ -10,10 +10,8 @@ namespace CDP {
 
 	class Component {
 
-	private:
-		std::vector<Component*> &m_sibling_components;
-
 	protected:
+		std::vector<Component*> &m_sibling_components;
 		GameObject & m_game_object;
 
 	public:
@@ -41,6 +39,8 @@ namespace CDP {
 
 		virtual void Start() {}
 		virtual void Update() {}
+
+		virtual void OnCollision(Collider&) {}
 
 	};
 
