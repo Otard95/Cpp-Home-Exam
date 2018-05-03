@@ -10,6 +10,8 @@ Rigidbody::Rigidbody(std::vector<Component*> &components,
 :	Component(components, go)
 ,	collider(col)
 ,	transform(trans)
+, m_is_kinematic(false)
+, m_use_gravity(false)
 {}
 
 void Rigidbody::Start(){}

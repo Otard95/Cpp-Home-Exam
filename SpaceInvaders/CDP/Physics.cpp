@@ -5,9 +5,10 @@
 using namespace CDP;
 
 Physics::Physics()
-	: m_rigidbodies(nullptr)
-	, m_colliders(nullptr) {
-}
+	: m_time(Time::Instance())
+	, m_rigidbodies(nullptr)
+	, m_colliders(nullptr)
+{}
 
 Physics& Physics::Instance() {
 	static Physics m_instance;
@@ -31,6 +32,12 @@ void Physics::Update () {
 	std::for_each(m_rigidbodies->begin(), m_rigidbodies->end(), [&](Rigidbody& rb) {
 
 
+		if (!rb.m_is_kinematic) {
+			if (rb.m_use_gravity)
+				rb.velocity.y += 9.81 * m_time.DeltaTime();
+
+			rb.transform.Translate(rb.velocity * m_time.DeltaTime());
+		}
 
 		std::for_each(m_colliders->begin(), m_colliders->end(), [&](Collider& col) {
 
@@ -78,12 +85,16 @@ void Physics::Update () {
 						else
 							rb.transform.Translate(dx, 0);
 
+						rb.velocity.x = 0;
+
 					} else {
 						// move in y axis
 						if (rpos.y < 0)
 							rb.transform.Translate(0, -dy);
 						else
 							rb.transform.Translate(0, dy);
+
+						rb.velocity.y = 0;
 
 					}
 

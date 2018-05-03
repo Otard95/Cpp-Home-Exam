@@ -84,6 +84,9 @@
     <ClInclude Include="CDP\Headers\GameCore.h">
       <Filter>CDP\Headers</Filter>
     </ClInclude>
+    <ClInclude Include="CDP\Headers\Time.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -120,6 +123,9 @@
       <Filter>CDP</Filter>
     </ClCompile>
     <ClCompile Include="CDP\GameCore.cpp">
+      <Filter>CDP</Filter>
+    </ClCompile>
+    <ClCompile Include="CDP\Time.cpp">
       <Filter>CDP</Filter>
     </ClCompile>
   </ItemGroup>

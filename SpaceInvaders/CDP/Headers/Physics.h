@@ -2,6 +2,7 @@
 #define __PHYSICS_H__
 
 #include <vector>
+#include "Time.h"
 #include "Rigidbody.h"
 #include "Collider.h"
 
@@ -11,6 +12,8 @@ namespace CDP {
 
 		Physics ();
 		static Physics m_instance;
+
+		Time& m_time;
 
 		std::vector<Rigidbody>* m_rigidbodies;
 		std::vector<Collider>* m_colliders;

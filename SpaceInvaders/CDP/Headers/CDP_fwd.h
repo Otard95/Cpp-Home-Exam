@@ -11,6 +11,7 @@ namespace CDP {
 	class Physics;
 	class Rigidbody;
 	class Collider;
+	class Time;
 
 }
 

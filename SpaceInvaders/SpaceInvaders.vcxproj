@@ -161,6 +161,7 @@
     <ClInclude Include="CDP\Headers\Physics.h" />
     <ClInclude Include="CDP\Headers\Rigidbody.h" />
     <ClInclude Include="CDP\Headers\Sprite.h" />
+    <ClInclude Include="CDP\Headers\Time.h" />
     <ClInclude Include="CDP\Headers\Transform.h" />
     <ClInclude Include="CDP\Headers\Triplet.h" />
     <ClInclude Include="CDP\Headers\Vector2.h" />
@@ -178,6 +179,7 @@
     <ClCompile Include="CDP\Physics.cpp" />
     <ClCompile Include="CDP\Rigidbody.cpp" />
     <ClCompile Include="CDP\Sprite.cpp" />
+    <ClCompile Include="CDP\Time.cpp" />
     <ClCompile Include="CDP\Transform.cpp" />
     <ClCompile Include="SpaceInvaders.cpp" />
     <ClCompile Include="stdafx.cpp">

@@ -12,6 +12,7 @@
 #include "Collider.h"
 #include "Rigidbody.h"
 #include "Triplet.h"
+#include "Time.h"
 
 #endif // !__CDP_FWD_H__
 
