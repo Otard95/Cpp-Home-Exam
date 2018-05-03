@@ -36,6 +36,9 @@ namespace CDP {
 
 		}
 
+
+		GameObject& GetGameObject();
+
 		virtual void Start() {}
 		virtual void Update() {}
 

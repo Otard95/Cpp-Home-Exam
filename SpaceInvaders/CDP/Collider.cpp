@@ -13,4 +13,3 @@ Collider::Collider(std::vector<std::shared_ptr<Component>> &components,
 void Collider::Start() {
 
 }
-

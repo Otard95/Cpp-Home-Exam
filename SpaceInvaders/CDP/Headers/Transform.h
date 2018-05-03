@@ -13,7 +13,7 @@ namespace CDP {
 
 	public:
 		Transform(std::vector<std::shared_ptr<Component>> &components, GameObject&);
-		~Transform() = default;
+		~Transform();
 
 		Vector2<double> const& Position();
 		void Translate(const Vector2<double>&);
