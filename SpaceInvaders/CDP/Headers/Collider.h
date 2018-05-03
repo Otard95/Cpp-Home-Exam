@@ -2,7 +2,6 @@
 #define __COLLIDER_COMPONENT_H__
 
 #include "Component.h"
-#include <memory>
 #include "Vector2.h"
 
 namespace CDP {
@@ -17,12 +16,17 @@ namespace CDP {
 		double size;
 		double extent;
 
+		bool is_trigger;
+
 		Collider(std::vector<Component*>&,
 						 GameObject&,
 						 Transform&);
 		~Collider() = default;
 
 		void Start() override;
+
+		void OnCollision(Collider&);
+
 	};
 
 }
