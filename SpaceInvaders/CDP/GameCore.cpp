@@ -62,6 +62,7 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 	}
 	else if (type == "Collider")
 	{
+		
 		CreateCollider(go.GetComponents(), go);
 	}
 	else if (type == "Rigidbody")
