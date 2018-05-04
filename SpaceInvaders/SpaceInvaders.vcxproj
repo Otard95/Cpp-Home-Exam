@@ -158,6 +158,7 @@
     <ClInclude Include="CDP\Headers\GameObject.h" />
     <ClInclude Include="CDP\Headers\InputManager.h" />
     <ClInclude Include="CDP\Headers\Keys.h" />
+    <ClInclude Include="CDP\Headers\KillTrigger.h" />
     <ClInclude Include="CDP\Headers\MouseButtons.h" />
     <ClInclude Include="CDP\Headers\Physics.h" />
     <ClInclude Include="CDP\Headers\PlayerControlls.h" />
@@ -179,6 +180,7 @@
     <ClCompile Include="CDP\GameCore.cpp" />
     <ClCompile Include="CDP\GameObject.cpp" />
     <ClCompile Include="CDP\InputManager.cpp" />
+    <ClCompile Include="CDP\KillTrigger.cpp" />
     <ClCompile Include="CDP\Physics.cpp" />
     <ClCompile Include="CDP\PlayerControlls.cpp" />
     <ClCompile Include="CDP\Rigidbody.cpp" />

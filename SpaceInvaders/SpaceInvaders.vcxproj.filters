@@ -93,6 +93,9 @@
     <ClInclude Include="CDP\Headers\AlienLogic.h">
       <Filter>CDP\Headers</Filter>
     </ClInclude>
+    <ClInclude Include="CDP\Headers\KillTrigger.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -138,6 +141,9 @@
       <Filter>CDP</Filter>
     </ClCompile>
     <ClCompile Include="CDP\AlienLogic.cpp">
+      <Filter>CDP</Filter>
+    </ClCompile>
+    <ClCompile Include="CDP\KillTrigger.cpp">
       <Filter>CDP</Filter>
     </ClCompile>
   </ItemGroup>
