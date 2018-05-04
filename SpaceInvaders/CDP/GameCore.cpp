@@ -92,18 +92,19 @@ void GameCore::InstantiateAliens(nlohmann::json jsonObject)
 	int offsetY = height / jsonObject["row"].get<int>();
 
 
-	for (int i = 0; i < jsonObject["row"]; ++i)
+	for (int i = 0; i < jsonObject["row"]; i++)
 	{
-		for (int j = 0; j < jsonObject["col"]; ++j)
+		for (int j = 0; j < jsonObject["col"]; j++)
 		{
 			std::cout << offsetX << std::endl;
 			std::cout << offsetY << std::endl;
 
 			std::cout << "before changing json" << std::endl;
-			jsonObject["components"][0]["pos"]["x"] = j * offsetX + (offsetX * 2);
-			jsonObject["components"][0]["pos"]["y"] = i * offsetY + (offsetY * 2);
-			std::cout << "json pos: " << jsonObject["components"][0]["pos"]["x"] << std::endl;
-			std::cout << "json pos: " << jsonObject["components"][0]["pos"]["y"] << std::endl;
+			jsonObject["components"][0]["pos"]["x"] = j * offsetX + offsetX + offsetX / 2;
+			jsonObject["components"][0]["pos"]["y"] = i * offsetY + offsetY * 2;
+
+			std::cout << "json pos: " << j << ": " << jsonObject["components"][0]["pos"]["x"] << std::endl;
+			std::cout << "json pos: " << i << ": " << jsonObject["components"][0]["pos"]["y"] << std::endl;
 			
 			Instantiate(jsonObject);
 		}

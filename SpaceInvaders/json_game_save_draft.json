@@ -71,7 +71,7 @@
 			"name": "Invader",
 			"row": 5,
 			"col": 11,
-			"width": 400,
+			"width": 900,
 			"height": 300,
 			"components": [
 				{
@@ -82,16 +82,6 @@
 				{
 					"type": "Sprite",
 					"texture": "./sprites/invader.bmp"
-				},
-				{
-					"type": "Collider",
-					"x": 108,
-					"y": 63
-				},
-				{
-					"type": "Rigidbody",
-					"is_kinematic": false,
-					"use_gravity": false
 				}
 			]
 		},
