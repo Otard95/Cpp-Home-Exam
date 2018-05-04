@@ -86,6 +86,21 @@
 				{
 					"type": "Sprite",
 					"texture": "./sprites/invader.bmp"
+				},
+				{
+					"type": "Collider",
+					"x": 54,
+					"y": 30,
+					"trigger": false
+				},
+				{
+					"type": "Rigidbody",
+					"is_kinematic": false,
+					"use_gravity": false,
+					"velocity": {
+						"x": 0,
+						"y": 0
+					}
 				}
 			]
 		},
