@@ -29,7 +29,8 @@ namespace CDP {
 
 		void Initialize(nlohmann::json&);
 		void Instantiate(nlohmann::json & jsonObject);
-		void Destroy(GameObject*);
+		void Destroy(std::shared_ptr<GameObject>);
+		void DestroyComponent(std::shared_ptr<Component>);
 
 		void Run();
 

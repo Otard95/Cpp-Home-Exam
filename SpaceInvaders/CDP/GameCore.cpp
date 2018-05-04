@@ -94,9 +94,55 @@ void GameCore::InstantiateAliens(nlohmann::json jsonObject)
 	}
 }
 
-void GameCore::Destroy(GameObject* go)
+void GameCore::Destroy(std::shared_ptr<GameObject> go)
 {
-	//search and destroy
+	for (auto it = m_game_objects.begin(); it != m_game_objects.end(); ++it)
+	{
+		if (*it == go)
+		{
+			for (auto itcmp = (*it)->GetComponents().begin(); itcmp != (*it)->GetComponents().end(); ++itcmp)
+			{
+				DestroyComponent(*itcmp);
+			}
+			m_game_objects.erase(it);
+			return;
+		}
+	}
+}
+
+void GameCore::DestroyComponent(std::shared_ptr<Component> cmp)
+{
+	for (auto it = m_rigidbodies.begin(); it != m_rigidbodies.end(); ++it) {
+		if (*it == cmp)
+		{
+			m_rigidbodies.erase(it);
+			return;
+		}
+	}
+	for (auto it = m_colliders.begin(); it != m_colliders.end(); ++it) {
+		if (*it == cmp) {
+			m_colliders.erase(it);
+			return;
+		}
+	}
+	for (auto it = m_sprites.begin(); it != m_sprites.end(); ++it) {
+		if (*it == cmp) {
+			m_sprites.erase(it);
+			return;
+		}
+	}
+	for (auto it = m_transforms.begin(); it != m_transforms.end(); ++it) {
+		if (*it == cmp) {
+			m_transforms.erase(it);
+			return;
+		}
+	}
+	for (auto it = m_player_controlls.begin(); it != m_player_controlls.end(); ++it) {
+		if (*it == cmp) {
+			m_player_controlls.erase(it);
+			return;
+		}
+	}
 }
 
 void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo)
