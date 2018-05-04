@@ -75,8 +75,8 @@
 			"name": "Invader",
 			"row": 5,
 			"col": 11,
-			"width": 900,
-			"height": 900,
+			"width": 400,
+			"height": 300,
 			"components": [
 				{
 					"type": "Transform",
