@@ -10,6 +10,6 @@ KillTrigger::KillTrigger(std::vector<std::shared_ptr<Component>> &cmp,
 {}
 
 void KillTrigger::OnCollision(Collider& col) {
-	GameCore::Instance().Destroy(std::shared_ptr<GameObject>(&col.GetGameObject()));
+	col.GetGameObject().Enable(false);
 }
 

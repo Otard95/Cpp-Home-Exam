@@ -29,6 +29,7 @@ void Physics::Update () {
 
 	std::for_each(m_rigidbodies.begin(), m_rigidbodies.end(), [&](std::shared_ptr<Rigidbody> rb) {
 
+		if (!rb->enabled) return;
 
 		if (!rb->m_is_kinematic) {
 			rb->transform.Translate(rb->velocity * m_time.DeltaTime());
@@ -39,7 +40,7 @@ void Physics::Update () {
 
 		std::for_each(m_colliders.begin(), m_colliders.end(), [&](std::shared_ptr<Collider> col) {
 
-			if (&rb->collider == col.get()) return;
+			if (&rb->collider == col.get() || !col->enabled) return;
 
 			double dist = (col->transform.Position()
 										 - rb->transform.Position()).Length();

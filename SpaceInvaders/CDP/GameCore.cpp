@@ -224,6 +224,9 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 		if (jo.find("fire_rate") != jo.end())
 			m_player_controlls.back()->SetFireRate(jo["fire_rate"]);
 	}
+	else if (type == "KillTrigger") {
+		CreateKillTrigger(go.GetComponents(), go);
+	}
 	else if (type == "AlienLogic")
 	{
 		CreateAlienLogic(go.GetComponents(), go, jo["move_length"], jo["move_interval"], jo["drop_length"]);
@@ -264,6 +267,12 @@ void CDP::GameCore::CreatePlayerController(std::vector<std::shared_ptr<Component
 	components.push_back(m_player_controlls.back());
 }
 
+void CDP::GameCore::CreateKillTrigger(std::vector<std::shared_ptr<Component>>& cmp, GameObject & go)
+{
+	m_kill_triggers.emplace_back(std::make_shared<KillTrigger>(cmp, go));
+	cmp.push_back(m_kill_triggers.back());
+}
+
 void CDP::GameCore::CreateAlienLogic(std::vector<std::shared_ptr<Component>>& components, GameObject& go, int moveLength, double moveInterval, int dropLength)
 {
 	m_alien_logics.emplace_back(std::make_shared<AlienLogic>(components, go, *m_transforms.back(), moveLength, moveInterval, dropLength));
@@ -285,31 +294,37 @@ void GameCore::Run()
 
 		std::for_each(m_rigidbodies.begin(), m_rigidbodies.end(), [](std::shared_ptr<Rigidbody> c)
 		{
+			if (!c->enabled) return;
 			c->Update();
 		});
 
 		std::for_each(m_colliders.begin(), m_colliders.end(), [](std::shared_ptr<Collider> c)
 		{
+			if (!c->enabled) return;
 			c->Update();
 		});
 
 		std::for_each(m_transforms.begin(), m_transforms.end(), [](std::shared_ptr<Transform> c)
 		{
+			if (!c->enabled) return;
 			c->Update();
 		});
 
 		std::for_each(m_sprites.begin(), m_sprites.end(), [](std::shared_ptr<Sprite> c)
 		{
+			if (!c->enabled) return;
 			c->Update();
 		});
 
 		std::for_each(m_player_controlls.begin(), m_player_controlls.end(), [](std::shared_ptr<PlayerControlls> c)
 		{
+			if (!c->enabled) return;
 			c->Update();
 		});
 
 		std::for_each(m_alien_logics.begin(), m_alien_logics.end(), [](std::shared_ptr<AlienLogic> c)
 		{
+			if (!c->enabled) return;
 			c->Update();
 		});
 

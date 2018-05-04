@@ -4,6 +4,7 @@
 #include "CDP.h"
 #include "PlayerControlls.h"
 #include "AlienLogic.h"
+#include "KillTrigger.h"
 
 namespace CDP {
 
@@ -43,6 +44,7 @@ namespace CDP {
 		void CreateRigidbody(std::vector<std::shared_ptr<Component>>&, GameObject& go);
 		void CreateCollider(std::vector<std::shared_ptr<Component>>&, GameObject& go);
 		void CreatePlayerController(std::vector<std::shared_ptr<Component>>&, GameObject& go, nlohmann::json&);
+		void CreateKillTrigger(std::vector<std::shared_ptr<Component>>&, GameObject& go);
 		void CreateAlienLogic(std::vector<std::shared_ptr<Component>>& components, GameObject & go, int moveLength, double moveInterval, int dropLength);
 
 		/**
@@ -53,6 +55,7 @@ namespace CDP {
 		std::vector<std::shared_ptr<Transform>> m_transforms;
 		std::vector<std::shared_ptr<Sprite>> m_sprites;
 		std::vector<std::shared_ptr<PlayerControlls>> m_player_controlls;
+		std::vector<std::shared_ptr<KillTrigger>> m_kill_triggers;
 		std::vector<std::shared_ptr<AlienLogic>> m_alien_logics;
 	};
 

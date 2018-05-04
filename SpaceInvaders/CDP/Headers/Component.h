@@ -18,6 +18,8 @@ namespace CDP {
 		Component(std::vector<std::shared_ptr<Component>> &, GameObject&);
 		virtual ~Component() = default;
 
+		bool enabled;
+
 		template <class T>
 		std::shared_ptr<T> GetComponent() {
 

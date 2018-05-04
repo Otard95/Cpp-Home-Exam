@@ -111,6 +111,26 @@
 			]
 		},
 		{
+			"name": "TopWall",
+			"components": [
+				{
+					"type": "Transform",
+					"pos": {
+						"x": 450,
+						"y": -10
+					}
+				},
+				{
+					"type": "KillTrigger"
+				},
+				{
+					"type": "Collider",
+					"x": 900,
+					"y": 18
+				}
+			]
+		},
+		{
 			"name": "RightWall",
 			"components": [
 				{
