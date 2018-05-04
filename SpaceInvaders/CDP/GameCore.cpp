@@ -8,10 +8,10 @@ using namespace CDP;
 
 GameCore::GameCore()
 	: m_running(false)
-	, m_canvas(Canvas::Instance())
-	, m_input(InputManager::Instance())
-	, m_physics(Physics::Instance())
-	, m_time(Time::Instance())
+	  , m_canvas(Canvas::Instance())
+	  , m_input(InputManager::Instance())
+	  , m_physics(Physics::Instance())
+	  , m_time(Time::Instance())
 {
 	//m_canvas.SetTitle(std::string("Space Invaders Pro"));
 	m_physics.Init(m_rigidbodies, m_colliders);
@@ -25,7 +25,6 @@ GameCore::~GameCore()
 	m_rigidbodies.clear();
 	m_sprites.clear();
 	m_game_objects.clear();
-	
 }
 
 void GameCore::Initialize(nlohmann::json& jsonObject)
@@ -34,27 +33,37 @@ void GameCore::Initialize(nlohmann::json& jsonObject)
 	{
 		for (nlohmann::json::iterator it = jsonObject["scene"].begin(); it != jsonObject["scene"].end(); ++it)
 		{
+			if (jsonObject["name"] == "Invaders")
+			{
+				InstantiateAliens(jsonObject["Invader"]);
+				break;
+			}
 			Instantiate(it.value());
 		}
 	}
 
-	std::for_each(m_rigidbodies.begin(), m_rigidbodies.end(), [](std::shared_ptr<Rigidbody> c) {
+	std::for_each(m_rigidbodies.begin(), m_rigidbodies.end(), [](std::shared_ptr<Rigidbody> c)
+	{
 		c->Start();
 	});
 
-	std::for_each(m_colliders.begin(), m_colliders.end(), [](std::shared_ptr<Collider> c) {
+	std::for_each(m_colliders.begin(), m_colliders.end(), [](std::shared_ptr<Collider> c)
+	{
 		c->Start();
 	});
 
-	std::for_each(m_transforms.begin(), m_transforms.end(), [](std::shared_ptr<Transform> c) {
+	std::for_each(m_transforms.begin(), m_transforms.end(), [](std::shared_ptr<Transform> c)
+	{
 		c->Start();
 	});
 
-	std::for_each(m_sprites.begin(), m_sprites.end(), [](std::shared_ptr<Sprite> c) {
+	std::for_each(m_sprites.begin(), m_sprites.end(), [](std::shared_ptr<Sprite> c)
+	{
 		c->Start();
 	});
 
-	std::for_each(m_player_controlls.begin(), m_player_controlls.end(), [](std::shared_ptr<PlayerControlls> c) {
+	std::for_each(m_player_controlls.begin(), m_player_controlls.end(), [](std::shared_ptr<PlayerControlls> c)
+	{
 		c->Start();
 	});
 
@@ -74,6 +83,18 @@ void GameCore::Instantiate(nlohmann::json& jsonObject)
 	}
 }
 
+void GameCore::InstantiateAliens(nlohmann::json jsonObject)
+{
+	for (int i = 0; i < jsonObject["row"]; ++i)
+	{
+		for (int j = 0; j < jsonObject["col"]; ++j)
+		{
+			Instantiate(jsonObject);
+			GameObject alien = *m_game_objects.back();
+		}
+	}
+}
+
 void GameCore::Destroy(GameObject* go)
 {
 	//search and destroy
@@ -82,14 +103,14 @@ void GameCore::Destroy(GameObject* go)
 void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo)
 {
 	std::cout << type << std::endl;
-	if(type == "Transform")
+	if (type == "Transform")
 	{
 		const auto x = jo["pos"]["x"];
 		const auto y = jo["pos"]["y"];
 		CreateTransform(go.GetComponents(), go);
 		m_transforms.back()->SetPosition(x, y);
 	}
-	else if(type == "Sprite")
+	else if (type == "Sprite")
 	{
 		const auto texture = jo["texture"];
 		CreateSprite(go.GetComponents(), go, texture);
@@ -122,13 +143,13 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 
 // Stian
 
-void GameCore::CreateTransform(std::vector<std::shared_ptr<Component>> &components, GameObject& go )
+void GameCore::CreateTransform(std::vector<std::shared_ptr<Component>>& components, GameObject& go)
 {
 	m_transforms.emplace_back(std::make_shared<Transform>(components, go));
 	components.push_back(m_transforms.back());
 }
 
-void GameCore::CreateSprite(std::vector<std::shared_ptr<Component>> &components, GameObject& go, std::string texture)
+void GameCore::CreateSprite(std::vector<std::shared_ptr<Component>>& components, GameObject& go, std::string texture)
 {
 	m_sprites.emplace_back(std::make_shared<Sprite>(components, go, texture));
 	components.push_back(m_sprites.back());
@@ -140,13 +161,13 @@ void GameCore::CreateRigidbody(std::vector<std::shared_ptr<Component>>& componen
 	components.push_back(m_rigidbodies.back());
 }
 
-void GameCore::CreateCollider(std::vector<std::shared_ptr<Component>> &components, GameObject& go)
+void GameCore::CreateCollider(std::vector<std::shared_ptr<Component>>& components, GameObject& go)
 {
 	m_colliders.emplace_back(std::make_shared<Collider>(components, go, *m_transforms.back()));
 	components.push_back(m_colliders.back());
 }
 
-void CDP::GameCore::CreatePlayerController(std::vector<std::shared_ptr<Component>>& components, GameObject & go)
+void CDP::GameCore::CreatePlayerController(std::vector<std::shared_ptr<Component>>& components, GameObject& go)
 {
 	m_player_controlls.emplace_back(std::make_shared<PlayerControlls>(components, go));
 	components.push_back(m_player_controlls.back());
@@ -154,36 +175,39 @@ void CDP::GameCore::CreatePlayerController(std::vector<std::shared_ptr<Component
 
 void GameCore::Run()
 {
-	while(m_running)
+	while (m_running)
 	{
-
 		m_input.Update();
 		m_time.Update();
 		m_physics.Update();
 
-		std::for_each(m_rigidbodies.begin(), m_rigidbodies.end(), [] (std::shared_ptr<Rigidbody> c) {
+		std::for_each(m_rigidbodies.begin(), m_rigidbodies.end(), [](std::shared_ptr<Rigidbody> c)
+		{
 			c->Update();
 		});
 
-		std::for_each(m_colliders.begin(), m_colliders.end(), [] (std::shared_ptr<Collider> c) {
+		std::for_each(m_colliders.begin(), m_colliders.end(), [](std::shared_ptr<Collider> c)
+		{
 			c->Update();
 		});
 
-		std::for_each(m_transforms.begin(), m_transforms.end(), [] (std::shared_ptr<Transform> c) {
+		std::for_each(m_transforms.begin(), m_transforms.end(), [](std::shared_ptr<Transform> c)
+		{
 			c->Update();
 		});
 
-		std::for_each(m_sprites.begin(), m_sprites.end(), [] (std::shared_ptr<Sprite> c) {
+		std::for_each(m_sprites.begin(), m_sprites.end(), [](std::shared_ptr<Sprite> c)
+		{
 			c->Update();
 		});
 
-		std::for_each(m_player_controlls.begin(), m_player_controlls.end(), [](std::shared_ptr<PlayerControlls> c) {
+		std::for_each(m_player_controlls.begin(), m_player_controlls.end(), [](std::shared_ptr<PlayerControlls> c)
+		{
 			c->Update();
 		});
 
 		m_canvas.RenderFrame();
 
 		if (m_input.GetKey(Keys::Esc)) m_running = false;
-
 	}
 }
