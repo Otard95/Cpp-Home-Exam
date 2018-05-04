@@ -17,15 +17,17 @@ PlayerControlls::PlayerControlls(std::vector<std::shared_ptr<Component>>& cmp,
 	, m_bullet_prefab(bullet_prefab)
 {}
 
-void CDP::PlayerControlls::SetSpeed(double speed) {
+void PlayerControlls::SetSpeed(double speed) {
 	m_speed = speed;
 }
 
-void CDP::PlayerControlls::SetFireRate(double fire_rate) {
+void PlayerControlls::SetFireRate(double fire_rate) {
+
 	m_fire_rate = fire_rate;
 }
 
 void PlayerControlls::Start() {
+	// get the transform component
 	m_transform = GetComponent<Transform>();
 }
 
@@ -41,7 +43,7 @@ void PlayerControlls::Update() {
 	if (m_input.GetKeyDown(Keys::Space) && m_cooldown <= 0) {
 		std::cout << "boom" << std::endl;
 		if (m_bullets.size() > 5)
-		{
+		{ // reuse bullet objects
 			for (auto it = m_bullets.begin(); it != m_bullets.end(); ++it){
 				std::shared_ptr<GameObject> go = it->lock();
 				if (go->enabled) continue;
@@ -53,13 +55,13 @@ void PlayerControlls::Update() {
 			}
 		}
 		else
-		{
+		{ // create a new bullet
 			m_bullet_prefab["components"][0]["pos"]["x"] = m_transform->Position().x;
 			m_bullet_prefab["components"][0]["pos"]["y"] = m_transform->Position().y - 45;
 			m_bullets.push_back(GameCore::Instance().Instantiate(m_bullet_prefab));
 			m_cooldown = m_fire_rate;
 		}
-	} else {
+	} else { // gun is on cooldown
 		m_cooldown -= m_time.DeltaTime();
 	}
 
