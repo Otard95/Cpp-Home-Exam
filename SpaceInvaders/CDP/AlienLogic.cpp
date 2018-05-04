@@ -51,5 +51,6 @@ void AlienLogic::Move()
 
 void AlienLogic::OnCollision(Collider& collider)
 {
-	//if (collider.GetGameObject().GetName() == ""
+	collider.GetGameObject().Enable(false);
+	m_game_object.Enable(false);
 }
