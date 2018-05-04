@@ -35,9 +35,11 @@ void GameCore::Initialize(nlohmann::json& jsonObject)
 			{
 				std::cout << "INITIALIZE ALIENS" << std::endl;
 				InstantiateAliens(it.value());
-				break;
 			}
-			Instantiate(it.value());
+			else
+			{
+				Instantiate(it.value());
+			}
 		}
 	}
 
@@ -99,15 +101,8 @@ void GameCore::InstantiateAliens(nlohmann::json jsonObject)
 	{
 		for (int j = 0; j < jsonObject["col"]; j++)
 		{
-			std::cout << offsetX << std::endl;
-			std::cout << offsetY << std::endl;
-
-			std::cout << "before changing json" << std::endl;
 			jsonObject["components"][0]["pos"]["x"] = j * offsetX + offsetX + offsetX / 2;
 			jsonObject["components"][0]["pos"]["y"] = i * offsetY + offsetY * 2;
-
-			std::cout << "json pos: " << j << ": " << jsonObject["components"][0]["pos"]["x"] << std::endl;
-			std::cout << "json pos: " << i << ": " << jsonObject["components"][0]["pos"]["y"] << std::endl;
 			
 			Instantiate(jsonObject);
 		}
