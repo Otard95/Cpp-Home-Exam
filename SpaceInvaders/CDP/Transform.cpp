@@ -7,12 +7,10 @@ Transform::Transform(std::vector<std::shared_ptr<Component>>& components, GameOb
 	: Component(components, gobj)
 	  , m_position(Vector2<double>())
 {
-	std::cout << "Transform::Creating" << std::endl;
 }
 
 Transform::~Transform()
 {
-	std::cout << "Killed" << std::endl;
 }
 
 Vector2<double> const& Transform::Position()

@@ -96,6 +96,12 @@
     <ClInclude Include="CDP\Headers\KillTrigger.h">
       <Filter>CDP\Headers</Filter>
     </ClInclude>
+    <ClInclude Include="resource1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CDP\Headers\GameManager.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -146,11 +152,19 @@
     <ClCompile Include="CDP\KillTrigger.cpp">
       <Filter>CDP</Filter>
     </ClCompile>
+    <ClCompile Include="CDP\GameManager.cpp">
+      <Filter>CDP</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="json_game_save_draft.json">
       <Filter>Resource Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SpaceInvaders1.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

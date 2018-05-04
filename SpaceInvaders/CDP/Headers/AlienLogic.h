@@ -2,6 +2,7 @@
 #define __ALIENLOGIC_COMPONENT_H__
 
 #include "CDP.h"
+#include "GameManager.h"
 
 namespace CDP
 {
@@ -15,11 +16,15 @@ namespace CDP
 		int m_drop_limit;
 		int m_drop_length;
 		double m_time_elapsed;
+		std::weak_ptr<GameManager> m_game_manager;
+
 	public:
 		Transform& transform;
+		void Start() override;
 		void Update() override;
 		void OnCollision(Collider&) override;
 
+		void CheckPosition();
 		void Move();
 
 		AlienLogic(std::vector<std::shared_ptr<Component>> &,
