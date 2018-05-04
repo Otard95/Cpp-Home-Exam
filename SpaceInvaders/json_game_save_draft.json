@@ -20,7 +20,7 @@
 			"components": [
 				{
 					"type": "Transform",
-					"pos": { "x": 10, "y": 10 },
+					"pos": { "x": 800, "y": 850 },
 					"scale": { "x": 1, "y": 1 }
 				},
 				{
@@ -28,6 +28,36 @@
 					"moveSpeed": 5,
 					"fireRate": 3
 				},				
+				{
+					"type": "Sprite",
+					"texture": "./sprites/spaceship.bmp"
+				},
+				{
+					"type": "Collider",
+					"x": 108,
+					"y": 63
+				},
+				{
+					"type": "Rigidbody",
+					"is_kinematic": false,
+					"use_gravity": false
+				}
+			]
+		},
+		{
+			"name": "test",
+			"components": [
+				{
+					"type": "Transform",
+					"pos": {
+						"x": 400,
+						"y": 400
+					},
+					"scale": {
+						"x": 1,
+						"y": 1
+					}
+				},
 				{
 					"type": "Sprite",
 					"texture": "./sprites/spaceship.bmp"

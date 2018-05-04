@@ -3,7 +3,7 @@
 
 using namespace CDP;
 
-Transform::Transform(std::vector<Component*>& components, GameObject& gobj)
+Transform::Transform(std::vector<std::shared_ptr<Component>>& components, GameObject& gobj)
 	: Component(components, gobj)
 	  , m_position(Vector2<double>())
 {

@@ -11,25 +11,25 @@ namespace CDP {
 	class Component {
 
 	protected:
-		std::vector<Component*> &m_sibling_components;
+		std::vector<std::shared_ptr<Component>> m_sibling_components;
 		GameObject & m_game_object;
 
 	public:
-		Component(std::vector<Component*> &components, GameObject&);
+		Component(std::vector<std::shared_ptr<Component>> &, GameObject&);
 		virtual ~Component() = default;
 
 		template <class T>
-		T* GetComponent() {
+		std::shared_ptr<T> GetComponent() {
 
-			T* out = nullptr;
+			std::shared_ptr<T> out = nullptr;
 
 			std::cout << m_sibling_components.size() << std::endl;
 
 			std::for_each(m_sibling_components.begin(),
 										m_sibling_components.end(),
-										[&out](Component* c) {
+										[&out](std::shared_ptr<Component> c) {
 				if (out) return;
-				out = dynamic_cast<T*>(c);
+				out = std::dynamic_pointer_cast<T>(c);
 			});
 
 			return out;

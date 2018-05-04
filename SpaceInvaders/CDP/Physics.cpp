@@ -6,8 +6,6 @@ using namespace CDP;
 
 Physics::Physics()
 	: m_time(Time::Instance())
-	, m_rigidbodies(nullptr)
-	, m_colliders(nullptr)
 {}
 
 Physics& Physics::Instance() {
@@ -15,8 +13,8 @@ Physics& Physics::Instance() {
 	return m_instance;
 }
 
-void Physics::Init(std::vector<Rigidbody> * rigidbodies,
-									 std::vector<Collider> * colliders
+void Physics::Init(std::vector<std::shared_ptr<Rigidbody>>& rigidbodies,
+									 std::vector<std::shared_ptr<Collider>>& colliders
 /*std::vector<Transform> * transforms*/) {
 	m_rigidbodies = rigidbodies;
 	m_colliders = colliders;
@@ -27,34 +25,34 @@ void Physics::Init(std::vector<Rigidbody> * rigidbodies,
 
 void Physics::Update () {
 
-	if (m_rigidbodies == nullptr) return;
+	if (m_rigidbodies.empty()) return;
 
-	std::for_each(m_rigidbodies->begin(), m_rigidbodies->end(), [&](Rigidbody& rb) {
+	std::for_each(m_rigidbodies.begin(), m_rigidbodies.end(), [&](std::shared_ptr<Rigidbody> rb) {
 
 
-		if (!rb.m_is_kinematic) {
-			rb.transform.Translate(rb.velocity * m_time.DeltaTime());
+		if (!rb->m_is_kinematic) {
+			rb->transform.Translate(rb->velocity * m_time.DeltaTime());
 
-			if (rb.m_use_gravity)
-				rb.velocity.y += 9.81 * m_time.DeltaTime();
+			if (rb->m_use_gravity)
+				rb->velocity.y += 9.81 * m_time.DeltaTime();
 		}
 
-		std::for_each(m_colliders->begin(), m_colliders->end(), [&](Collider& col) {
+		std::for_each(m_colliders.begin(), m_colliders.end(), [&](std::shared_ptr<Collider> col) {
 
-			if (&rb.collider == &col) return;
+			if (&rb->collider == col.get()) return;
 
-			double dist = (col.transform.Position()
-										 - rb.transform.Position()).Length();
+			double dist = (col->transform.Position()
+										 - rb->transform.Position()).Length();
 
-			double conbinedExtent = col.Extent() + rb.collider.Extent();
+			double conbinedExtent = col->Extent() + rb->collider.Extent();
 
 			if (dist < conbinedExtent) {
 				// Do proppor collition check
 
-				const Vector2<double>& pos1 = rb.transform.Position();
-				const Vector2<double>& pos2 = col.transform.Position();
-				Vector2<double> ex1 = rb.collider.BoundsSize() / 2;
-				Vector2<double> ex2 = col.BoundsSize() / 2;
+				const Vector2<double>& pos1 = rb->transform.Position();
+				const Vector2<double>& pos2 = col->transform.Position();
+				Vector2<double> ex1 = rb->collider.BoundsSize() / 2;
+				Vector2<double> ex2 = col->BoundsSize() / 2;
 				/*left = max(r1.left, r2.left)
 					right = min(r1.right, r2.right)
 					bottom = min(r1.bottom, r2.bottom)
@@ -68,10 +66,10 @@ void Physics::Update () {
 				if (l < r && b < t) {
 					// Collition
 
-					rb.collider.CollisionEvent(col);
-					col.CollisionEvent(rb.collider);
+					rb->collider.CollisionEvent(*col);
+					col->CollisionEvent(rb->collider);
 
-					if (rb.collider.is_trigger) return;
+					if (rb->collider.is_trigger) return;
 
 					double dx = r - l;
 					double dy = t - b;
@@ -81,20 +79,20 @@ void Physics::Update () {
 					if (dx < dy) {
 						// move in x axis
 						if (rpos.x < 0)
-							rb.transform.Translate(-dx, 0);
+							rb->transform.Translate(-dx, 0);
 						else
-							rb.transform.Translate(dx, 0);
+							rb->transform.Translate(dx, 0);
 
-						rb.velocity.x = 0;
+						rb->velocity.x = 0;
 
 					} else {
 						// move in y axis
 						if (rpos.y < 0)
-							rb.transform.Translate(0, -dy);
+							rb->transform.Translate(0, -dy);
 						else
-							rb.transform.Translate(0, dy);
+							rb->transform.Translate(0, dy);
 
-						rb.velocity.y = 0;
+						rb->velocity.y = 0;
 
 					}
 

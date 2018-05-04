@@ -18,7 +18,7 @@ namespace CDP {
 
 		bool is_trigger;
 
-		Collider(std::vector<Component*>&,
+		Collider(std::vector<std::shared_ptr<Component>>&,
 						 GameObject&,
 						 Transform&);
 		~Collider() = default;

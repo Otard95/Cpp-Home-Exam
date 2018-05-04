@@ -17,7 +17,7 @@ namespace CDP {
 		bool m_use_gravity;
 
 		Vector2<double> velocity;
-		Rigidbody(std::vector<Component*> &components,
+		Rigidbody(std::vector<std::shared_ptr<Component>> &,
 							GameObject& go,
 							Collider &,
 							Transform&);

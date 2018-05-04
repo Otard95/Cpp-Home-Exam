@@ -4,7 +4,7 @@
 
 using namespace CDP;
 
-Collider::Collider(std::vector<Component*> &components,
+Collider::Collider(std::vector<std::shared_ptr<Component>> &components,
 									 GameObject& go,
 									 Transform& trans)
 	: Component(components, go)
@@ -49,7 +49,7 @@ double Collider::Extent() {
 
 void Collider::CollisionEvent(Collider& collider) {
 	
-	std::for_each(m_sibling_components.begin(), m_sibling_components.end(), [&collider] (Component* c) {
+	std::for_each(m_sibling_components.begin(), m_sibling_components.end(), [&collider] (std::shared_ptr<Component> c) {
 		c->OnCollision(collider);
 	});
 

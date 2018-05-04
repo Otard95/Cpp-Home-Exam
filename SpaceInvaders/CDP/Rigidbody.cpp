@@ -3,7 +3,7 @@
 
 using namespace CDP;
 
-Rigidbody::Rigidbody(std::vector<Component*> &components,
+Rigidbody::Rigidbody(std::vector<std::shared_ptr<Component>> &components,
 										 GameObject& go,
 										 Collider& col,
 										 Transform& trans)

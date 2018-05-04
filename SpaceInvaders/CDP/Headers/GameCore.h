@@ -21,7 +21,7 @@ namespace CDP {
 			return gameCore;
 		}
 
-		std::vector<CDP::GameObject> m_game_objects;
+		std::vector<std::shared_ptr<GameObject>> m_game_objects;
 
 		GameCore();
 		~GameCore();
@@ -37,20 +37,20 @@ namespace CDP {
 
 		// Stian
 
-		void CreateTransform(std::vector<Component*>&, GameObject&);
-		void CreateSprite(std::vector<Component*>& components, GameObject& go, std::string texture);
-		void CreateRigidbody(std::vector<Component*>& components, GameObject& go);
-		void CreateCollider(std::vector<Component*>& components, GameObject& go);
+		void CreateTransform(std::vector<std::shared_ptr<Component>>&, GameObject&);
+		void CreateSprite(std::vector<std::shared_ptr<Component>>& components, GameObject& go, std::string texture);
+		void CreateRigidbody(std::vector<std::shared_ptr<Component>>& components, GameObject& go);
+		void CreateCollider(std::vector<std::shared_ptr<Component>>& components, GameObject& go);
 		
 	
 
 		/**
 		 * ## Components
 		*/
-		std::vector<Rigidbody> m_rigidbodies;
-		std::vector<Collider> m_colliders;
-		std::vector<Transform> m_transforms;
-		std::vector<Sprite> m_sprites;
+		std::vector<std::shared_ptr<Rigidbody>> m_rigidbodies;
+		std::vector<std::shared_ptr<Collider>> m_colliders;
+		std::vector<std::shared_ptr<Transform>> m_transforms;
+		std::vector<std::shared_ptr<Sprite>> m_sprites;
 
 		//end
 	};

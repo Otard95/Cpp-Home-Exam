@@ -15,14 +15,14 @@ namespace CDP {
 
 		Time& m_time;
 
-		std::vector<Rigidbody>* m_rigidbodies;
-		std::vector<Collider>* m_colliders;
+		std::vector<std::shared_ptr<Rigidbody>> m_rigidbodies;
+		std::vector<std::shared_ptr<Collider>> m_colliders;
 		//std::shared_ptr<std::vector<Transform>> m_transforms;
 
 	public:
 		static Physics& Instance ();
-		void Init (std::vector<Rigidbody> * rigidbodies,
-									 std::vector<Collider> * colliders
+		void Init (std::vector<std::shared_ptr<Rigidbody>>& rigidbodies,
+									 std::vector<std::shared_ptr<Collider>>& colliders
 									 /*std::vector<Transform> * transforms*/);
 		Physics (Physics const &) = delete;
 		Physics& operator= (const Physics&) = delete;

@@ -12,7 +12,7 @@ namespace CDP {
 		Vector2<double> m_position;
 
 	public:
-		Transform(std::vector<Component*> &components, GameObject&);
+		Transform(std::vector<std::shared_ptr<Component>> &, GameObject&);
 		~Transform();
 
 		Vector2<double> const& Position();

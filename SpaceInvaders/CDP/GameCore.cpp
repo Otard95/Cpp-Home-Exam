@@ -14,7 +14,7 @@ GameCore::GameCore()
 	, m_time(Time::Instance())
 {
 	//m_canvas.SetTitle(std::string("Space Invaders Pro"));
-	m_physics.Init(&m_rigidbodies, &m_colliders);
+	m_physics.Init(m_rigidbodies, m_colliders);
 }
 
 
@@ -38,20 +38,20 @@ void GameCore::Initialize(nlohmann::json& jsonObject)
 		}
 	}
 
-	std::for_each(m_rigidbodies.begin(), m_rigidbodies.end(), [](Rigidbody& c) {
-		c.Start();
+	std::for_each(m_rigidbodies.begin(), m_rigidbodies.end(), [](std::shared_ptr<Rigidbody> c) {
+		c->Start();
 	});
 
-	std::for_each(m_colliders.begin(), m_colliders.end(), [](Collider& c) {
-		c.Start();
+	std::for_each(m_colliders.begin(), m_colliders.end(), [](std::shared_ptr<Collider> c) {
+		c->Start();
 	});
 
-	std::for_each(m_transforms.begin(), m_transforms.end(), [](Transform& c) {
-		c.Start();
+	std::for_each(m_transforms.begin(), m_transforms.end(), [](std::shared_ptr<Transform> c) {
+		c->Start();
 	});
 
-	std::for_each(m_sprites.begin(), m_sprites.end(), [](Sprite& c) {
-		c.Start();
+	std::for_each(m_sprites.begin(), m_sprites.end(), [](std::shared_ptr<Sprite> c) {
+		c->Start();
 	});
 
 	m_running = true;
@@ -59,13 +59,13 @@ void GameCore::Initialize(nlohmann::json& jsonObject)
 
 void GameCore::Instantiate(nlohmann::json& jsonObject)
 {
-	m_game_objects.emplace_back(jsonObject["name"].get<std::string>());
+	m_game_objects.emplace_back(std::make_shared<GameObject>(jsonObject["name"].get<std::string>()));
 
 	if (jsonObject.find("components") != jsonObject.end())
 	{
 		for (nlohmann::json::iterator comp = jsonObject["components"].begin(); comp != jsonObject["components"].end(); ++comp)
 		{
-			AddComponent(m_game_objects.back(), comp.value()["type"], comp.value());
+			AddComponent(*m_game_objects.back(), comp.value()["type"], comp.value());
 		}
 	}
 }
@@ -83,7 +83,7 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 		const auto x = jo["pos"]["x"];
 		const auto y = jo["pos"]["y"];
 		CreateTransform(go.GetComponents(), go);
-		m_transforms.back().SetPosition(x, y);
+		m_transforms.back()->SetPosition(x, y);
 	}
 	else if(type == "Sprite")
 	{
@@ -94,15 +94,15 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 	{
 		auto bound_size = Vector2<double>(jo["x"], jo["y"]);
 		CreateCollider(go.GetComponents(), go);
-		m_colliders.back().UpdateSize(bound_size);
+		m_colliders.back()->UpdateSize(bound_size);
 	}
 	else if (type == "Rigidbody")
 	{
 		const auto is_kinematic = jo["is_kinematic"];
 		const auto use_gravity = jo["use_gravity"];
 		CreateRigidbody(go.GetComponents(), go);
-		m_rigidbodies.back().m_use_gravity = use_gravity;
-		m_rigidbodies.back().m_is_kinematic = is_kinematic;
+		m_rigidbodies.back()->m_use_gravity = use_gravity;
+		m_rigidbodies.back()->m_is_kinematic = is_kinematic;
 	}
 }
 
@@ -110,29 +110,29 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 
 // Stian
 
-void GameCore::CreateTransform(std::vector<Component*> &components, GameObject& go )
+void GameCore::CreateTransform(std::vector<std::shared_ptr<Component>> &components, GameObject& go )
 {
-	m_transforms.emplace_back(components, go);
-	components.push_back(&m_transforms.back());
+	m_transforms.emplace_back(std::make_shared<Transform>(components, go));
+	components.push_back(m_transforms.back());
 }
 
-void GameCore::CreateSprite(std::vector<Component*> &components, GameObject& go, std::string texture)
+void GameCore::CreateSprite(std::vector<std::shared_ptr<Component>> &components, GameObject& go, std::string texture)
 {
-	m_sprites.emplace_back(components, go, texture);
-	components.push_back(&m_sprites.back());
+	m_sprites.emplace_back(std::make_shared<Sprite>(components, go, texture));
+	components.push_back(m_sprites.back());
 }
 
-void GameCore::CreateRigidbody(std::vector<Component*>& components, GameObject& go)
+void GameCore::CreateRigidbody(std::vector<std::shared_ptr<Component>>& components, GameObject& go)
 {
-	m_rigidbodies.emplace_back(components, go, m_colliders.back(), m_transforms.back());
-	components.push_back(&m_rigidbodies.back());
+	m_rigidbodies.emplace_back(std::make_shared<Rigidbody>(components, go, *m_colliders.back(), *m_transforms.back()));
+	components.push_back(m_rigidbodies.back());
 }
 
-void GameCore::CreateCollider(std::vector<Component*> &components, GameObject& go)
+void GameCore::CreateCollider(std::vector<std::shared_ptr<Component>> &components, GameObject& go)
 {
-	m_colliders.emplace_back(components, go, m_transforms.back());
+	m_colliders.emplace_back(std::make_shared<Collider>(components, go, *m_transforms.back()));
 	std::cout << "added collider" << std::endl;
-	components.push_back(&m_colliders.back());
+	components.push_back(m_colliders.back());
 }
 
 void GameCore::Run()
@@ -143,36 +143,25 @@ void GameCore::Run()
 		m_time.Update();
 		m_physics.Update();
 
-		std::for_each(m_rigidbodies.begin(), m_rigidbodies.end(), [] (Rigidbody& c) {
-			c.Update();
+		std::for_each(m_rigidbodies.begin(), m_rigidbodies.end(), [] (std::shared_ptr<Rigidbody> c) {
+			c->Update();
 		});
 
-		std::for_each(m_colliders.begin(), m_colliders.end(), [] (Collider& c) {
-			c.Update();
+		std::for_each(m_colliders.begin(), m_colliders.end(), [] (std::shared_ptr<Collider> c) {
+			c->Update();
 		});
 
-		std::for_each(m_transforms.begin(), m_transforms.end(), [] (Transform& c) {
-			c.Update();
+		std::for_each(m_transforms.begin(), m_transforms.end(), [] (std::shared_ptr<Transform> c) {
+			c->Update();
 		});
 
-		std::for_each(m_sprites.begin(), m_sprites.end(), [] (Sprite& c) {
-			c.Update();
+		std::for_each(m_sprites.begin(), m_sprites.end(), [] (std::shared_ptr<Sprite> c) {
+			c->Update();
 		});
 
 		m_canvas.RenderFrame();
 
 		if (m_input.GetKey(Keys::Esc)) m_running = false;
-
-		if (m_input.GetKey(Keys::D))
-		{
-			auto transform = m_game_objects.at(0).GetComponents()[0]->GetComponent<Transform>();
-			transform->SetPosition(transform->Position().x + 1, transform->Position().y);
-		}
-		else if (m_input.GetKey(Keys::A))
-		{
-			auto transform = m_game_objects.at(0).GetComponents()[0]->GetComponent<Transform>();
-			transform->SetPosition(transform->Position().x - 1, transform->Position().y);
-		}
 
 	}
 }
