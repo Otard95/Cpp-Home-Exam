@@ -1,16 +1,17 @@
 #include "Headers/PlayerControlls.h"
-#include <iostream>
 
 using namespace CDP;
 
 PlayerControlls::PlayerControlls(std::vector<std::shared_ptr<Component>>& cmp,
-																 GameObject& go)
+																 GameObject& go,
+																 nlohmann::json& bullet_prefab)
 	: Component(cmp, go)
 	, m_transform(nullptr)
 	, m_input(InputManager::Instance())
 	, m_time(Time::Instance())
 	, m_speed(200)
 	, m_fire_rate(1)
+	, m_bullet_prefab(bullet_prefab)
 {}
 
 void CDP::PlayerControlls::SetSpeed(double speed) {

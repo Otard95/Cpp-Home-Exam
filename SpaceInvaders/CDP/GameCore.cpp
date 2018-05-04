@@ -198,7 +198,7 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 	}
 	else if (type == "PlayerController")
 	{
-		CreatePlayerController(go.GetComponents(), go);
+		CreatePlayerController(go.GetComponents(), go, jo["bullet_prefab"]);
 		if (jo.find("speed") != jo.end())
 			m_player_controlls.back()->SetSpeed(jo["speed"]);
 		if (jo.find("fire_rate") != jo.end())
@@ -234,9 +234,9 @@ void GameCore::CreateCollider(std::vector<std::shared_ptr<Component>>& component
 	components.push_back(m_colliders.back());
 }
 
-void CDP::GameCore::CreatePlayerController(std::vector<std::shared_ptr<Component>>& components, GameObject& go)
+void CDP::GameCore::CreatePlayerController(std::vector<std::shared_ptr<Component>>& components, GameObject& go, nlohmann::json& bullet_prefab)
 {
-	m_player_controlls.emplace_back(std::make_shared<PlayerControlls>(components, go));
+	m_player_controlls.emplace_back(std::make_shared<PlayerControlls>(components, go, bullet_prefab));
 	components.push_back(m_player_controlls.back());
 }
 

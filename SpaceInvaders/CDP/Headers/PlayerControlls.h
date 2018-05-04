@@ -3,6 +3,7 @@
 
 #include <memory>
 #include "CDP.h"
+#include "../../nlohmann_json/json.hpp"
 
 namespace CDP {
 
@@ -15,9 +16,12 @@ namespace CDP {
 		double m_speed;
 		double m_fire_rate;
 
+		nlohmann::json m_bullet_prefab;
+
 	public:
 		PlayerControlls(std::vector<std::shared_ptr<Component>> &,
-										GameObject&);
+										GameObject&,
+										nlohmann::json&);
 		~PlayerControlls() = default;
 
 		void SetSpeed(double speed);
