@@ -40,7 +40,11 @@
 				{
 					"type": "Rigidbody",
 					"is_kinematic": false,
-					"use_gravity": false
+					"use_gravity": false,
+					"velocity": {
+						"x": -100,
+						"y": 0
+					}
 				}
 			]
 		},

@@ -240,6 +240,10 @@ void CDP::GameCore::CreatePlayerController(std::vector<std::shared_ptr<Component
 
 void GameCore::Run()
 {
+
+	m_time.Update();
+	m_time.Update();
+
 	while(m_running)
 	{
 		m_input.Update();
