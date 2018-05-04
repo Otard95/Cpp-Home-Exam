@@ -81,6 +81,9 @@ void GameCore::Instantiate(nlohmann::json& jsonObject)
 		}
 	}
 
+	if (m_running)
+		m_game_objects.back()->Start();
+
 }
 
 void GameCore::InstantiateAliens(nlohmann::json jsonObject)

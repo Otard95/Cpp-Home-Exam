@@ -1,6 +1,6 @@
+#include <algorithm>
 #include "Headers/GameObject.h"
 #include "Headers/Transform.h"
-#include <iostream>
 
 using namespace CDP;
 
@@ -20,10 +20,10 @@ std::vector<std::shared_ptr<Component>>& GameObject::GetComponents()
 	return m_components;
 }
 
-GameObject::~GameObject()
-{
-}
+void CDP::GameObject::Start() {
 
-void CDP::GameObject::Update()
-{
+	std::for_each(m_components.begin(), m_components.end(), [] (std::shared_ptr<Component> c) {
+		c->Start();
+	});
+
 }
