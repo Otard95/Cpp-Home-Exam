@@ -49,15 +49,16 @@
 			"row": 5,
 			"col": 11,
 			"width": 900,
+			"height": 900,
 			"components": [
 				{
 					"type": "Transform",
-					"pos": { "x": 800, "y": 850 },
+					"pos": { "x": 1, "y": 1 },
 					"scale": { "x": 1, "y": 1 }
 				},				
 				{
 					"type": "Sprite",
-					"texture": "./sprites/spaceship.bmp"
+					"texture": "./sprites/invader.bmp"
 				},
 				{
 					"type": "Collider",
