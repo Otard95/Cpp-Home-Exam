@@ -65,9 +65,6 @@ void GameCore::Initialize(nlohmann::json& jsonObject)
 		c->Start();
 	});
 
-
-	m_physics.Init(m_rigidbodies, m_colliders);
-
 	m_running = true;
 }
 
@@ -82,6 +79,7 @@ void GameCore::Instantiate(nlohmann::json& jsonObject)
 			AddComponent(*m_game_objects.back(), comp.value()["type"], comp.value());
 		}
 	}
+
 }
 
 void GameCore::InstantiateAliens(nlohmann::json jsonObject)
@@ -121,6 +119,8 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 		auto bound_size = Vector2<double>(jo["x"], jo["y"]);
 		CreateCollider(go.GetComponents(), go);
 		m_colliders.back()->UpdateSize(bound_size);
+
+		m_physics.Init(m_rigidbodies, m_colliders);
 	}
 	else if (type == "Rigidbody")
 	{
@@ -129,6 +129,8 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 		CreateRigidbody(go.GetComponents(), go);
 		m_rigidbodies.back()->m_use_gravity = use_gravity;
 		m_rigidbodies.back()->m_is_kinematic = is_kinematic;
+
+		m_physics.Init(m_rigidbodies, m_colliders);
 	}
 	else if (type == "PlayerController")
 	{
