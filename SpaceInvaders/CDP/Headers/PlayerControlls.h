@@ -18,6 +18,7 @@ namespace CDP {
 		double m_cooldown;
 
 		nlohmann::json m_bullet_prefab;
+		std::vector<std::weak_ptr<GameObject>> m_bullets;
 
 	public:
 		PlayerControlls(std::vector<std::shared_ptr<Component>> &,

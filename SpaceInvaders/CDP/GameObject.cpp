@@ -10,10 +10,11 @@ GameObject::GameObject(const std::string str)
 	m_name = str;
 }
 
-void GameObject::Enable(bool enabled) {
-	std::for_each(m_components.begin(), m_components.end(), [&enabled](std::shared_ptr<Component> c) {
-		c->enabled = enabled;
+void GameObject::Enable(bool _enabled) {
+	std::for_each(m_components.begin(), m_components.end(), [&_enabled](std::shared_ptr<Component> c) {
+		c->enabled = _enabled;
 	});
+	enabled = _enabled;
 }
 
 std::string GameObject::GetName() const

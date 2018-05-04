@@ -30,7 +30,7 @@ namespace CDP {
 		~GameCore();
 		
 		void Initialize(nlohmann::json&);
-		void Instantiate(nlohmann::json & jsonObject);
+		std::weak_ptr<GameObject> Instantiate(nlohmann::json & jsonObject);
 
 
 		void InstantiateAliens(nlohmann::json jsonObject);

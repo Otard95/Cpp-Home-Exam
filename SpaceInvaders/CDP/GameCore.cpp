@@ -82,7 +82,7 @@ void GameCore::Initialize(nlohmann::json& jsonObject)
 	m_running = true;
 }
 
-void GameCore::Instantiate(nlohmann::json& jsonObject)
+std::weak_ptr<GameObject> GameCore::Instantiate(nlohmann::json& jsonObject)
 {
 	m_game_objects.emplace_back(std::make_shared<GameObject>(jsonObject["name"].get<std::string>()));
 
@@ -96,6 +96,8 @@ void GameCore::Instantiate(nlohmann::json& jsonObject)
 
 	if (m_running)
 		m_game_objects.back()->Start();
+
+	return m_game_objects.back();
 
 }
 

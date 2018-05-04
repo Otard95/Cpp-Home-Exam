@@ -39,11 +39,26 @@ void PlayerControlls::Update() {
 
 	// Shooting
 	if (m_input.GetKeyDown(Keys::Space) && m_cooldown <= 0) {
-		m_bullet_prefab["components"][0]["pos"]["x"] = m_transform->Position().x;
-		m_bullet_prefab["components"][0]["pos"]["y"] = m_transform->Position().y - 45;
-		std::cout << m_bullet_prefab << std::endl;
-		GameCore::Instance().Instantiate(m_bullet_prefab);
-		m_cooldown = m_fire_rate;
+		std::cout << "boom" << std::endl;
+		if (m_bullets.size() > 5)
+		{
+			for (auto it = m_bullets.begin(); it != m_bullets.end(); ++it){
+				std::shared_ptr<GameObject> go = it->lock();
+				if (go->enabled) continue;
+				go->GetComponent<Transform>()->SetPosition(m_transform->Position().x, m_transform->Position().y - 45);
+				go->GetComponent<Rigidbody>()->velocity.y = m_bullet_prefab["components"][3]["velocity"]["y"];
+				go->Enable(true);
+				m_cooldown = m_fire_rate;
+				break;
+			}
+		}
+		else
+		{
+			m_bullet_prefab["components"][0]["pos"]["x"] = m_transform->Position().x;
+			m_bullet_prefab["components"][0]["pos"]["y"] = m_transform->Position().y - 45;
+			m_bullets.push_back(GameCore::Instance().Instantiate(m_bullet_prefab));
+			m_cooldown = m_fire_rate;
+		}
 	} else {
 		m_cooldown -= m_time.DeltaTime();
 	}
