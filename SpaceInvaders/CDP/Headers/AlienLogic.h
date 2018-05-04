@@ -16,6 +16,8 @@ namespace CDP
 		int m_drop_limit;
 		int m_drop_length;
 		double m_time_elapsed;
+		int m_start_pos_x;
+		int m_start_pos_y;
 
 	public:
 		std::weak_ptr<GameManager> m_game_manager;
@@ -26,6 +28,7 @@ namespace CDP
 
 		void CheckPosition();
 		void Move();
+		void Reset();
 
 		AlienLogic(std::vector<std::shared_ptr<Component>> &,
 									GameObject&,

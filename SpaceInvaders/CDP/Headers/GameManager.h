@@ -16,6 +16,7 @@ namespace CDP
 		~GameManager() = default;
 
 		void AddScore();
+		void NextLevel();
 	};
 }
 

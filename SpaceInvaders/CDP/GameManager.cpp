@@ -21,10 +21,24 @@ void GameManager::AddScore()
 	{
 		std::cout << "#############################################\n";
 		std::cout << "##                                         ##\n";
-		std::cout << "##                 You won!                ##\n";
+		std::cout << "##              Stage cleared!             ##\n";
 		std::cout << "##                                         ##\n";
 		std::cout << "#############################################" << std::endl;
 
-		GameCore::Instance().Stop();
+		NextLevel();
+	}
+}
+
+void GameManager::NextLevel()
+{
+	m_round_score = 0;
+
+	for(auto it = GameCore::Instance().m_alien_logics.begin(); it != GameCore::Instance().m_alien_logics.end(); ++it)
+	{
+		auto al = it->get();
+		al->Reset();
+
+		auto go = it->get()->GetGameObject();
+		go.Enable(true);
 	}
 }

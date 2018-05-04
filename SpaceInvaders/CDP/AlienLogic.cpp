@@ -20,6 +20,8 @@ AlienLogic::AlienLogic(std::vector<std::shared_ptr<Component>>& components,
 	  , m_time_elapsed(0)
 	  , transform(trans)
 {
+	m_start_pos_x = transform.Position().x;
+	m_start_pos_y = transform.Position().y;
 }
 
 void AlienLogic::Start()
@@ -83,3 +85,17 @@ void AlienLogic::OnCollision(Collider& collider)
 	std::shared_ptr<GameManager> gm = m_game_manager.lock();
 	if (gm) gm->AddScore();
 }
+
+void AlienLogic::Reset()
+{
+	transform.SetPosition(m_start_pos_x, m_start_pos_y);
+	m_direction = 1;
+	m_drop_steps = 0;
+	m_time_elapsed = 0;
+
+	if(m_move_interval >= 0.1)
+	{
+		m_move_interval -= 0.1;
+	}	
+}
+
