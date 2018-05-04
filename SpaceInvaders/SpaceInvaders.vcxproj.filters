@@ -161,6 +161,7 @@
     <None Include="json_game_save_draft.json">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SpaceInvaders1.rc">

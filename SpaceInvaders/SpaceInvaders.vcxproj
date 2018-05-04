@@ -199,6 +199,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="json_game_save_draft.json" />
     <None Include="packages.config" />
   </ItemGroup>

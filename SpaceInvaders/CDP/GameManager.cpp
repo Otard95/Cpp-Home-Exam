@@ -6,16 +6,18 @@ using namespace CDP;
 
 GameManager::GameManager(std::vector<std::shared_ptr<Component>>& components, GameObject& go)
 	: Component(components, go)
-	  , m_score_counter(0)
+	, m_total_score(0)
+	, m_round_score(0)  
 {
 }
 
 void GameManager::AddScore()
 {
-	m_score_counter++;
-	std::cout << "Score: " << m_score_counter << std::endl;
+	m_total_score++;
+	m_round_score++;
+	std::cout << "Score: " << m_total_score << std::endl;
 
-	if (GetScore() == 55)
+	if (m_round_score == GameCore::Instance().m_alien_logics.size())
 	{
 		std::cout << "#############################################\n";
 		std::cout << "##                                         ##\n";
@@ -25,9 +27,4 @@ void GameManager::AddScore()
 
 		GameCore::Instance().Stop();
 	}
-}
-
-int GameManager::GetScore()
-{
-	return m_score_counter;
 }
