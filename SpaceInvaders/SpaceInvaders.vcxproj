@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CDP\Headers\AlienLogic.h" />
     <ClInclude Include="CDP\Headers\Canvas.h" />
     <ClInclude Include="CDP\Headers\CDP.h" />
     <ClInclude Include="CDP\Headers\CDP_fwd.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CDP\AlienLogic.cpp" />
     <ClCompile Include="CDP\Canvas.cpp" />
     <ClCompile Include="CDP\Collider.cpp" />
     <ClCompile Include="CDP\Component.cpp" />

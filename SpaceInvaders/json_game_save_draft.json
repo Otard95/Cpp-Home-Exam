@@ -101,6 +101,11 @@
 						"x": 0,
 						"y": 0
 					}
+				},
+				{
+					"type": "AlienLogic",
+					"move_length": 10,
+					"move_interval": 1
 				}
 			]
 		},

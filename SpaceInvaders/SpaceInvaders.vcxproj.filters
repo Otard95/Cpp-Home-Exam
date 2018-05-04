@@ -90,6 +90,9 @@
     <ClInclude Include="CDP\Headers\PlayerControlls.h">
       <Filter>CDP\Headers</Filter>
     </ClInclude>
+    <ClInclude Include="CDP\Headers\AlienLogic.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -132,6 +135,9 @@
       <Filter>CDP</Filter>
     </ClCompile>
     <ClCompile Include="CDP\PlayerControlls.cpp">
+      <Filter>CDP</Filter>
+    </ClCompile>
+    <ClCompile Include="CDP\AlienLogic.cpp">
       <Filter>CDP</Filter>
     </ClCompile>
   </ItemGroup>

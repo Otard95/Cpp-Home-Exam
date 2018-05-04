@@ -1,6 +1,7 @@
 #include "Headers/GameCore.h"
 #include <iostream>
 #include <algorithm>
+#include "Headers/AlienLogic.h"
 
 using namespace CDP;
 
@@ -71,6 +72,11 @@ void GameCore::Initialize(nlohmann::json& jsonObject)
 	});
 
 	std::for_each(m_player_controlls.begin(), m_player_controlls.end(), [](std::shared_ptr<PlayerControlls> c)
+	{
+		c->Start();
+	});
+
+	std::for_each(m_alien_logics.begin(), m_alien_logics.end(), [](std::shared_ptr<AlienLogic> c)
 	{
 		c->Start();
 	});
@@ -165,6 +171,12 @@ void GameCore::DestroyComponent(std::shared_ptr<Component> cmp)
 			return;
 		}
 	}
+	for (auto it = m_alien_logics.begin(); it != m_alien_logics.end(); ++it) {
+		if (*it == cmp) {
+			m_alien_logics.erase(it);
+			return;
+		}
+	}
 }
 
 void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo)
@@ -212,6 +224,11 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 		if (jo.find("fire_rate") != jo.end())
 			m_player_controlls.back()->SetFireRate(jo["fire_rate"]);
 	}
+	else if (type == "AlienLogic")
+	{
+		CreateAlienLogic(go.GetComponents(), go, jo["move_length"], jo["move_interval"]);
+		std::cout << jo["move_interval"] << std::endl;
+	}
 }
 
 // end
@@ -248,6 +265,13 @@ void CDP::GameCore::CreatePlayerController(std::vector<std::shared_ptr<Component
 	components.push_back(m_player_controlls.back());
 }
 
+void CDP::GameCore::CreateAlienLogic(std::vector<std::shared_ptr<Component>>& components, GameObject& go, int moveLength, double moveInterval)
+{
+	m_alien_logics.emplace_back(std::make_shared<AlienLogic>(components, go, *m_transforms.back(), moveLength, moveInterval));
+	components.push_back(m_alien_logics.back());
+	std::cout << moveInterval << std::endl;
+}
+
 void GameCore::Run()
 {
 
@@ -281,6 +305,11 @@ void GameCore::Run()
 		});
 
 		std::for_each(m_player_controlls.begin(), m_player_controlls.end(), [](std::shared_ptr<PlayerControlls> c)
+		{
+			c->Update();
+		});
+
+		std::for_each(m_alien_logics.begin(), m_alien_logics.end(), [](std::shared_ptr<AlienLogic> c)
 		{
 			c->Update();
 		});

@@ -3,6 +3,7 @@
 #include "../../nlohmann_json/json.hpp"
 #include "CDP.h"
 #include "PlayerControlls.h"
+#include "AlienLogic.h"
 
 namespace CDP {
 
@@ -42,6 +43,7 @@ namespace CDP {
 		void CreateRigidbody(std::vector<std::shared_ptr<Component>>&, GameObject& go);
 		void CreateCollider(std::vector<std::shared_ptr<Component>>&, GameObject& go);
 		void CreatePlayerController(std::vector<std::shared_ptr<Component>>&, GameObject& go, nlohmann::json&);
+		void CreateAlienLogic(std::vector<std::shared_ptr<Component>>& components, GameObject & go, int moveLength, double moveInterval);
 
 		/**
 		 * ## Components
@@ -51,6 +53,7 @@ namespace CDP {
 		std::vector<std::shared_ptr<Transform>> m_transforms;
 		std::vector<std::shared_ptr<Sprite>> m_sprites;
 		std::vector<std::shared_ptr<PlayerControlls>> m_player_controlls;
+		std::vector<std::shared_ptr<AlienLogic>> m_alien_logics;
 	};
 
 }
