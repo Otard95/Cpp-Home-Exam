@@ -31,9 +31,10 @@ void GameCore::Initialize(nlohmann::json& jsonObject)
 	{
 		for (nlohmann::json::iterator it = jsonObject["scene"].begin(); it != jsonObject["scene"].end(); ++it)
 		{
-			if (jsonObject["name"] == "Invaders")
+			if (it.value()["name"] == "Invader")
 			{
-				InstantiateAliens(jsonObject["Invader"]);
+				std::cout << "INITIALIZE ALIENS" << std::endl;
+				InstantiateAliens(it.value());
 				break;
 			}
 			Instantiate(it.value());
@@ -84,12 +85,25 @@ void GameCore::Instantiate(nlohmann::json& jsonObject)
 
 void GameCore::InstantiateAliens(nlohmann::json jsonObject)
 {
+	int width = jsonObject["width"];
+	int height = jsonObject["height"];
+	int offsetX = width / jsonObject["col"].get<int>();
+	int offsetY = height / jsonObject["row"].get<int>();
+
+
 	for (int i = 0; i < jsonObject["row"]; ++i)
 	{
 		for (int j = 0; j < jsonObject["col"]; ++j)
 		{
+			/*jsonObject["Component"]["Pos"]["x"] = j * offsetX;
+			jsonObject["Component"]["Pos"]["y"] = i * offsetY;
+			std::cout << "json pos: " << jsonObject["Component"]["Transform"]["Pos"]["x"] << std::endl;
+			std::cout << "json pos: " << jsonObject["Component"]["Transform"]["Pos"]["y"] << std::endl;*/
 			Instantiate(jsonObject);
+/*
 			GameObject alien = *m_game_objects.back();
+			auto transform = alien.GetComponents()[0]->GetComponent<Transform>();
+			Transform = */
 		}
 	}
 }
