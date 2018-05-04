@@ -93,9 +93,11 @@ void AlienLogic::Reset()
 	m_drop_steps = 0;
 	m_time_elapsed = 0;
 
-	if(m_move_interval >= 0.1)
+	if(m_move_interval >= 0.2)
 	{
 		m_move_interval -= 0.1;
-	}	
+	}
+
+	std::cout << m_move_interval << std::endl;
 }
 
