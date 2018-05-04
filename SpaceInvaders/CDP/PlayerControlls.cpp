@@ -39,7 +39,6 @@ void PlayerControlls::Update() {
 
 	// Shooting
 	if (m_input.GetKeyDown(Keys::Space) && m_cooldown <= 0) {
-		std::cout << "boom" << std::endl;
 		if (m_bullets.size() > 5)
 		{
 			for (auto it = m_bullets.begin(); it != m_bullets.end(); ++it){

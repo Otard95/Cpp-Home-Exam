@@ -36,13 +36,20 @@ void AlienLogic::Start()
 void AlienLogic::Update()
 {
 	Move();
+	CheckPosition();
 }
 
 void AlienLogic::CheckPosition()
 {
 	if (transform.Position().y >= 800)
 	{
-		
+		std::cout << "#############################################\n";
+		std::cout << "##                                         ##\n";
+		std::cout << "##               GAME OVER!                ##\n";
+		std::cout << "##                                         ##\n";
+		std::cout << "#############################################" << std::endl;
+
+		GameCore::Instance().Stop();
 	}
 }
 
@@ -75,4 +82,6 @@ void AlienLogic::OnCollision(Collider& collider)
 	m_game_object.Enable(false);
 	std::shared_ptr<GameManager> gm = m_game_manager.lock();
 	if (gm) gm->AddScore();
+
+	
 }

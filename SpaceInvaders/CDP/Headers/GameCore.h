@@ -49,6 +49,7 @@ namespace CDP {
 		
 
 		void Run();
+		void Stop();
 
 		/**
 		 * ## Components

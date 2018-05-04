@@ -11,6 +11,6 @@ GameManager::GameManager(std::vector<std::shared_ptr<Component>> &components, Ga
 void GameManager::AddScore()
 {
 	m_score_counter++;
-	std::cout << m_score_counter << std::endl;
+	std::cout << "Score: " << m_score_counter << std::endl;
 }
 

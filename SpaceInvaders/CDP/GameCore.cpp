@@ -351,3 +351,8 @@ void GameCore::Run()
 		if (m_input.GetKey(Keys::Esc)) m_running = false;
 	}
 }
+
+void CDP::GameCore::Stop()
+{
+	m_running = false;
+}
