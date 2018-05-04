@@ -16,7 +16,6 @@ namespace CDP {
 		Time& m_time;
 
 	public:
-		// Richard
 		static GameCore& instance() {
 			static GameCore gameCore;
 			return gameCore;
@@ -37,11 +36,6 @@ namespace CDP {
 
 		void Run();
 
-		
-		// end
-
-		// Stian
-
 		void CreateTransform(std::vector<std::shared_ptr<Component>>&, GameObject&);
 		void CreateSprite(std::vector<std::shared_ptr<Component>>&, GameObject& go, std::string texture);
 		void CreateRigidbody(std::vector<std::shared_ptr<Component>>&, GameObject& go);
@@ -56,8 +50,6 @@ namespace CDP {
 		std::vector<std::shared_ptr<Transform>> m_transforms;
 		std::vector<std::shared_ptr<Sprite>> m_sprites;
 		std::vector<std::shared_ptr<PlayerControlls>> m_player_controlls;
-
-		//end
 	};
 
 }
