@@ -114,7 +114,7 @@ void GameCore::InstantiateAliens(nlohmann::json jsonObject)
 	{
 		for (int j = 0; j < jsonObject["col"]; j++)
 		{
-			jsonObject["components"][0]["pos"]["x"] = j * offsetX + offsetX + offsetX / 2;
+			jsonObject["components"][0]["pos"]["x"] = j * offsetX + offsetX / 2;
 			jsonObject["components"][0]["pos"]["y"] = i * offsetY + offsetY * 2;
 			
 			Instantiate(jsonObject);
@@ -226,8 +226,7 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 	}
 	else if (type == "AlienLogic")
 	{
-		CreateAlienLogic(go.GetComponents(), go, jo["move_length"], jo["move_interval"]);
-		std::cout << jo["move_interval"] << std::endl;
+		CreateAlienLogic(go.GetComponents(), go, jo["move_length"], jo["move_interval"], jo["drop_length"]);
 	}
 }
 
@@ -265,9 +264,9 @@ void CDP::GameCore::CreatePlayerController(std::vector<std::shared_ptr<Component
 	components.push_back(m_player_controlls.back());
 }
 
-void CDP::GameCore::CreateAlienLogic(std::vector<std::shared_ptr<Component>>& components, GameObject& go, int moveLength, double moveInterval)
+void CDP::GameCore::CreateAlienLogic(std::vector<std::shared_ptr<Component>>& components, GameObject& go, int moveLength, double moveInterval, int dropLength)
 {
-	m_alien_logics.emplace_back(std::make_shared<AlienLogic>(components, go, *m_transforms.back(), moveLength, moveInterval));
+	m_alien_logics.emplace_back(std::make_shared<AlienLogic>(components, go, *m_transforms.back(), moveLength, moveInterval, dropLength));
 	components.push_back(m_alien_logics.back());
 	std::cout << moveInterval << std::endl;
 }

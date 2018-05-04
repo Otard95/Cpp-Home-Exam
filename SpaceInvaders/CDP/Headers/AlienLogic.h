@@ -11,6 +11,9 @@ namespace CDP
 		int m_move_length;
 		double m_move_interval;
 		int m_direction;
+		int m_drop_steps;
+		int m_drop_limit;
+		int m_drop_length;
 		double m_time_elapsed;
 	public:
 		Transform& transform;
@@ -23,7 +26,8 @@ namespace CDP
 									GameObject&,
 									Transform&,
 									int,
-									double);
+									double,
+									int);
 		~AlienLogic() = default;
 	};
 }

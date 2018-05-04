@@ -43,7 +43,7 @@ namespace CDP {
 		void CreateRigidbody(std::vector<std::shared_ptr<Component>>&, GameObject& go);
 		void CreateCollider(std::vector<std::shared_ptr<Component>>&, GameObject& go);
 		void CreatePlayerController(std::vector<std::shared_ptr<Component>>&, GameObject& go, nlohmann::json&);
-		void CreateAlienLogic(std::vector<std::shared_ptr<Component>>& components, GameObject & go, int moveLength, double moveInterval);
+		void CreateAlienLogic(std::vector<std::shared_ptr<Component>>& components, GameObject & go, int moveLength, double moveInterval, int dropLength);
 
 		/**
 		 * ## Components
