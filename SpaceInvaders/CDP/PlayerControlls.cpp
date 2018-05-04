@@ -32,9 +32,3 @@ void PlayerControlls::Update() {
 		m_transform->Translate(m_speed * m_time.DeltaTime(), 0);
 }
 
-void CDP::PlayerControlls::OnCollision(Collider &) {
-	std::cout << "col" << std::endl;
-}
-
-
-

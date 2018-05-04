@@ -20,7 +20,7 @@
 			"components": [
 				{
 					"type": "Transform",
-					"pos": { "x": 800, "y": 850 },
+					"pos": { "x": 450, "y": 850 },
 					"scale": { "x": 1, "y": 1 }
 				},
 				{
@@ -95,7 +95,7 @@
 				{
 					"type": "Transform",
 					"pos": {
-						"x": 1605,
+						"x": 905,
 						"y": 450
 					}
 				},
