@@ -25,7 +25,7 @@
 				},
 				{
 					"type": "PlayerController",
-					"speed": 100,
+					"speed": 200,
 					"fire_rate": 1
 				},				
 				{
