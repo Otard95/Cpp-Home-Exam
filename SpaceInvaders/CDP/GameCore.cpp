@@ -182,6 +182,8 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 		auto bound_size = Vector2<double>(jo["x"], jo["y"]);
 		CreateCollider(go.GetComponents(), go);
 		m_colliders.back()->UpdateSize(bound_size);
+		if (jo.find("trigger") != jo.end())
+			m_colliders.back()->is_trigger = jo["trigger"];
 
 		m_physics.Init(m_rigidbodies, m_colliders);
 	}
