@@ -45,6 +45,33 @@
 			]
 		},
 		{
+			"name": "Invader",
+			"row": 5,
+			"col": 11,
+			"width": 900,
+			"components": [
+				{
+					"type": "Transform",
+					"pos": { "x": 800, "y": 850 },
+					"scale": { "x": 1, "y": 1 }
+				},				
+				{
+					"type": "Sprite",
+					"texture": "./sprites/spaceship.bmp"
+				},
+				{
+					"type": "Collider",
+					"x": 108,
+					"y": 63
+				},
+				{
+					"type": "Rigidbody",
+					"is_kinematic": false,
+					"use_gravity": false
+				}
+			]
+		},
+		{
 			"name": "RightWall",
 			"components": [
 				{

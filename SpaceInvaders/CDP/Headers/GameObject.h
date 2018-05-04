@@ -27,7 +27,6 @@ namespace CDP {
 		std::vector<std::shared_ptr<Component>>& GetComponents();
 
 		void Update ();
-		
 	};
 
 }
