@@ -15,17 +15,19 @@ namespace CDP {
 		Physics& m_physics;
 		Time& m_time;
 
+		static GameCore m_instance;
+
 	public:
 		static GameCore& instance() {
-			static GameCore gameCore;
-			return gameCore;
+			static GameCore m_instance;
+			return m_instance;
 		}
 
 		std::vector<std::shared_ptr<GameObject>> m_game_objects;
 
 		GameCore();
 		~GameCore();
-
+		
 		void Initialize(nlohmann::json&);
 		void Instantiate(nlohmann::json & jsonObject);
 

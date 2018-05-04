@@ -19,14 +19,15 @@ namespace CDP {
 
 	public:
 		GameObject(const std::string str);
-		~GameObject();
+		~GameObject() = default;
 
 
 		std::string GetName() const;
 
 		std::vector<std::shared_ptr<Component>>& GetComponents();
 
-		void Update ();
+		void Start();
+
 	};
 
 }
