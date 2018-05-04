@@ -100,10 +100,11 @@ void GameCore::InstantiateAliens(nlohmann::json jsonObject)
 			std::cout << "json pos: " << jsonObject["Component"]["Transform"]["Pos"]["x"] << std::endl;
 			std::cout << "json pos: " << jsonObject["Component"]["Transform"]["Pos"]["y"] << std::endl;*/
 			Instantiate(jsonObject);
-/*
 			GameObject alien = *m_game_objects.back();
-			auto transform = alien.GetComponents()[0]->GetComponent<Transform>();
-			Transform = */
+			auto comp = alien.GetComponents()[0]->GetComponent<Transform>();
+			Transform transform = *comp;
+
+			transform.SetPosition(j * offsetX, i * offsetY);
 		}
 	}
 }
