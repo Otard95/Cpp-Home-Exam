@@ -1,4 +1,5 @@
 #include "Headers/PlayerControlls.h"
+#include "Headers/GameCore.h"
 
 using namespace CDP;
 
@@ -27,9 +28,19 @@ void PlayerControlls::Start() {
 }
 
 void PlayerControlls::Update() {
+	
+	// Movement
 	if (m_input.GetKey(Keys::A) && !m_input.GetKey(Keys::D))
 		m_transform->Translate(-m_speed * m_time.DeltaTime(), 0);
 	else if (m_input.GetKey(Keys::D) && !m_input.GetKey(Keys::A))
 		m_transform->Translate(m_speed * m_time.DeltaTime(), 0);
+
+	// Shooting
+	if (m_input.GetKeyDown(Keys::Space)) {
+		m_bullet_prefab["compunents"][0]["pos"]["x"] = m_transform->Position().x;
+		m_bullet_prefab["compunents"][0]["pos"]["y"] = m_transform->Position().y - 45;
+		GameCore::instance().Instantiate(m_bullet_prefab);
+	}
+
 }
 
