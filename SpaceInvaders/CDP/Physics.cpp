@@ -69,7 +69,7 @@ void Physics::Update () {
 					rb->collider.CollisionEvent(*col);
 					col->CollisionEvent(rb->collider);
 
-					if (rb->collider.is_trigger) return;
+					if (rb->collider.is_trigger || col->is_trigger) return;
 
 					double dx = r - l;
 					double dy = b - t;

@@ -6,6 +6,13 @@ using namespace CDP;
 
 // Richard
 
+GameCore & CDP::GameCore::Instance() {
+	{
+		static GameCore m_instance;
+		return m_instance;
+	}
+}
+
 GameCore::GameCore()
 	: m_running(false)
 	  , m_canvas(Canvas::Instance())

@@ -26,7 +26,7 @@
 				{
 					"type": "PlayerController",
 					"speed": 200,
-					"fire_rate": 1,
+					"fire_rate": 0.5,
 					"bullet_prefab": {
 						"name": "Bullet",
 						"components": [
@@ -49,7 +49,7 @@
 								"use_gravity": false,
 								"velocity": {
 									"x": 0,
-									"y": -10
+									"y": -300
 								}
 							}
 						]
@@ -91,7 +91,7 @@
 					"type": "Collider",
 					"x": 54,
 					"y": 30,
-					"trigger": false
+					"trigger": true
 				},
 				{
 					"type": "Rigidbody",

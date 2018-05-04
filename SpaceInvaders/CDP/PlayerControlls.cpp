@@ -13,6 +13,7 @@ PlayerControlls::PlayerControlls(std::vector<std::shared_ptr<Component>>& cmp,
 	, m_time(Time::Instance())
 	, m_speed(200)
 	, m_fire_rate(1)
+	, m_cooldown(0)
 	, m_bullet_prefab(bullet_prefab)
 {}
 
@@ -37,11 +38,14 @@ void PlayerControlls::Update() {
 		m_transform->Translate(m_speed * m_time.DeltaTime(), 0);
 
 	// Shooting
-	if (m_input.GetKeyDown(Keys::Space)) {
+	if (m_input.GetKeyDown(Keys::Space) && m_cooldown <= 0) {
 		m_bullet_prefab["components"][0]["pos"]["x"] = m_transform->Position().x;
 		m_bullet_prefab["components"][0]["pos"]["y"] = m_transform->Position().y - 45;
 		std::cout << m_bullet_prefab << std::endl;
-		GameCore::instance().Instantiate(m_bullet_prefab);
+		GameCore::Instance().Instantiate(m_bullet_prefab);
+		m_cooldown = m_fire_rate;
+	} else {
+		m_cooldown -= m_time.DeltaTime();
 	}
 
 }

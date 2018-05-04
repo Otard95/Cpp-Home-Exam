@@ -15,6 +15,7 @@ namespace CDP {
 
 		double m_speed;
 		double m_fire_rate;
+		double m_cooldown;
 
 		nlohmann::json m_bullet_prefab;
 

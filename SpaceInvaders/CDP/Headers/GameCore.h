@@ -19,10 +19,9 @@ namespace CDP {
 
 	public:
 		// Richard
-		static GameCore& instance() {
-			static GameCore m_instance;
-			return m_instance;
-		}
+		static GameCore& Instance();
+		GameCore(const GameCore&) = delete;
+		GameCore& operator= (const GameCore&) = delete;
 
 		std::vector<std::shared_ptr<GameObject>> m_game_objects;
 
