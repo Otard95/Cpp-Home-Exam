@@ -26,8 +26,6 @@ namespace CDP {
 		void Start() override;
 		void Update() override;
 
-		void OnCollision(Collider&) override;
-
 	};
 
 }
