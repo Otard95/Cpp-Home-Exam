@@ -5,8 +5,6 @@
 
 using namespace CDP;
 
-// Richard
-
 GameCore & CDP::GameCore::Instance() {
 	{
 		static GameCore m_instance;
