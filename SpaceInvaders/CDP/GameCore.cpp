@@ -13,8 +13,6 @@ GameCore::GameCore()
 	  , m_physics(Physics::Instance())
 	  , m_time(Time::Instance())
 {
-	//m_canvas.SetTitle(std::string("Space Invaders Pro"));
-	m_physics.Init(m_rigidbodies, m_colliders);
 }
 
 
@@ -66,6 +64,9 @@ void GameCore::Initialize(nlohmann::json& jsonObject)
 	{
 		c->Start();
 	});
+
+
+	m_physics.Init(m_rigidbodies, m_colliders);
 
 	m_running = true;
 }
@@ -175,7 +176,7 @@ void CDP::GameCore::CreatePlayerController(std::vector<std::shared_ptr<Component
 
 void GameCore::Run()
 {
-	while (m_running)
+	while(m_running)
 	{
 		m_input.Update();
 		m_time.Update();

@@ -63,7 +63,7 @@ void Physics::Update () {
 				double t = (pos1.y - ex1.y > pos2.y - ex2.y ? pos1.y - ex1.y : pos2.y - ex2.y);
 
 				// left < right && bottom < top
-				if (l < r && b < t) {
+				if (l < r && b > t) {
 					// Collition
 
 					rb->collider.CollisionEvent(*col);
@@ -72,7 +72,7 @@ void Physics::Update () {
 					if (rb->collider.is_trigger) return;
 
 					double dx = r - l;
-					double dy = t - b;
+					double dy = b - t;
 
 					Vector2<double> rpos = pos1 - pos2;
 

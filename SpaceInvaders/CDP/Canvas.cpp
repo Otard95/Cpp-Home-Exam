@@ -13,7 +13,7 @@ Canvas::Canvas()
 		"Canvas",                             //  window title
 		SDL_WINDOWPOS_UNDEFINED,              //  initial m_x position
 		SDL_WINDOWPOS_UNDEFINED,              //  initial m_y position
-		1600,                                 //  width, in pixels
+		900,																	//  width, in pixels
 		900,                                  //  height, in pixels
 		SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL  // flags
 	);
