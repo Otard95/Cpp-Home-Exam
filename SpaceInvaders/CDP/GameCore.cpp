@@ -190,6 +190,8 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 		CreateRigidbody(go.GetComponents(), go);
 		m_rigidbodies.back()->m_use_gravity = use_gravity;
 		m_rigidbodies.back()->m_is_kinematic = is_kinematic;
+		if (jo.find("velocity") != jo.end())
+			m_rigidbodies.back()->velocity = Vector2<double>(jo["velocity"]["x"], jo["velocity"]["y"]);
 
 		m_physics.Init(m_rigidbodies, m_colliders);
 	}
