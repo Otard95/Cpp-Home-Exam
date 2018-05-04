@@ -15,6 +15,7 @@ namespace CDP
 		~GameManager() = default;
 
 		void AddScore();
+		int GetScore();
 
 
 

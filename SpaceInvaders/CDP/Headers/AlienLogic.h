@@ -16,9 +16,9 @@ namespace CDP
 		int m_drop_limit;
 		int m_drop_length;
 		double m_time_elapsed;
-		std::weak_ptr<GameManager> m_game_manager;
 
 	public:
+		std::weak_ptr<GameManager> m_game_manager;
 		Transform& transform;
 		void Start() override;
 		void Update() override;

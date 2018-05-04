@@ -82,6 +82,4 @@ void AlienLogic::OnCollision(Collider& collider)
 	m_game_object.Enable(false);
 	std::shared_ptr<GameManager> gm = m_game_manager.lock();
 	if (gm) gm->AddScore();
-
-	
 }
