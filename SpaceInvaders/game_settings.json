@@ -82,7 +82,7 @@
 		{
 			"name": "Invader",
 			"row": 5,
-			"col": 1,
+			"col": 11,
 			"width": 900,
 			"height": 300,
 			"components": [
