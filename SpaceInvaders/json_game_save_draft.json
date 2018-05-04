@@ -16,6 +16,14 @@
 	},
 	"scene": [
 		{
+			"name": "GameManager",
+			"components": [
+				{
+					"type": "GameManager"
+				}
+			]
+		},
+		{
 			"name": "Player",
 			"components": [
 				{

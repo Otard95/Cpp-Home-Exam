@@ -39,7 +39,6 @@ void GameCore::Initialize(nlohmann::json& jsonObject)
 		{
 			if (it.value()["name"] == "Invader")
 			{
-				std::cout << "INITIALIZE ALIENS" << std::endl;
 				InstantiateAliens(it.value());
 			}
 			else
@@ -99,6 +98,17 @@ std::weak_ptr<GameObject> GameCore::Instantiate(nlohmann::json& jsonObject)
 
 	return m_game_objects.back();
 
+}
+
+std::weak_ptr<GameObject> GameCore::FindGameObject(const std::string& name)
+{
+	std::shared_ptr<GameObject> out;
+	std::for_each(m_game_objects.begin(), m_game_objects.end(), [&name, &out](std::shared_ptr<GameObject> go){
+		if (out) return;
+		if (go->GetName() == name)
+			out = go;
+	});
+	return out;
 }
 
 void GameCore::InstantiateAliens(nlohmann::json jsonObject)
@@ -181,7 +191,6 @@ void GameCore::DestroyComponent(std::shared_ptr<Component> cmp)
 
 void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo)
 {
-	std::cout << type << std::endl;
 	if (type == "Transform")
 	{
 		const auto x = jo["pos"]["x"];
@@ -231,6 +240,10 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 	{
 		CreateAlienLogic(go.GetComponents(), go, jo["move_length"], jo["move_interval"], jo["drop_length"]);
 	}
+	else if (type == "GameManager")
+	{
+		CreateGameManager(go.GetComponents(), go);
+	}
 }
 
 // end
@@ -277,7 +290,12 @@ void CDP::GameCore::CreateAlienLogic(std::vector<std::shared_ptr<Component>>& co
 {
 	m_alien_logics.emplace_back(std::make_shared<AlienLogic>(components, go, *m_transforms.back(), moveLength, moveInterval, dropLength));
 	components.push_back(m_alien_logics.back());
-	std::cout << moveInterval << std::endl;
+}
+
+void GameCore::CreateGameManager(std::vector<std::shared_ptr<Component>>& components, GameObject& go)
+{
+	m_game_managers.emplace_back(std::make_shared<GameManager>(components, go));
+	components.push_back(m_game_managers.back());
 }
 
 void GameCore::Run()
