@@ -18,7 +18,6 @@ namespace CDP {
 		static GameCore m_instance;
 
 	public:
-		// Richard
 		static GameCore& Instance();
 		GameCore(const GameCore&) = delete;
 		GameCore& operator= (const GameCore&) = delete;
@@ -38,11 +37,6 @@ namespace CDP {
 
 		void Run();
 
-		
-		// end
-
-		// Stian
-
 		void CreateTransform(std::vector<std::shared_ptr<Component>>&, GameObject&);
 		void CreateSprite(std::vector<std::shared_ptr<Component>>&, GameObject& go, std::string texture);
 		void CreateRigidbody(std::vector<std::shared_ptr<Component>>&, GameObject& go);
@@ -57,8 +51,6 @@ namespace CDP {
 		std::vector<std::shared_ptr<Transform>> m_transforms;
 		std::vector<std::shared_ptr<Sprite>> m_sprites;
 		std::vector<std::shared_ptr<PlayerControlls>> m_player_controlls;
-
-		//end
 	};
 
 }
