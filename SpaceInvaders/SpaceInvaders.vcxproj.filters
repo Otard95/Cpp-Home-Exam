@@ -87,6 +87,9 @@
     <ClInclude Include="CDP\Headers\Time.h">
       <Filter>CDP\Headers</Filter>
     </ClInclude>
+    <ClInclude Include="CDP\Headers\PlayerControlls.h">
+      <Filter>CDP\Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -126,6 +129,9 @@
       <Filter>CDP</Filter>
     </ClCompile>
     <ClCompile Include="CDP\Time.cpp">
+      <Filter>CDP</Filter>
+    </ClCompile>
+    <ClCompile Include="CDP\PlayerControlls.cpp">
       <Filter>CDP</Filter>
     </ClCompile>
   </ItemGroup>

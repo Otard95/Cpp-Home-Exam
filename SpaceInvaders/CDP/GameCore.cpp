@@ -54,6 +54,10 @@ void GameCore::Initialize(nlohmann::json& jsonObject)
 		c->Start();
 	});
 
+	std::for_each(m_player_controlls.begin(), m_player_controlls.end(), [](std::shared_ptr<PlayerControlls> c) {
+		c->Start();
+	});
+
 	m_running = true;
 }
 
@@ -104,6 +108,14 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 		m_rigidbodies.back()->m_use_gravity = use_gravity;
 		m_rigidbodies.back()->m_is_kinematic = is_kinematic;
 	}
+	else if (type == "PlayerController")
+	{
+		CreatePlayerController(go.GetComponents(), go);
+		if (jo.find("speed") != jo.end())
+			m_player_controlls.back()->SetSpeed(jo["speed"]);
+		if (jo.find("fire_rate") != jo.end())
+			m_player_controlls.back()->SetFireRate(jo["fire_rate"]);
+	}
 }
 
 // end
@@ -131,14 +143,20 @@ void GameCore::CreateRigidbody(std::vector<std::shared_ptr<Component>>& componen
 void GameCore::CreateCollider(std::vector<std::shared_ptr<Component>> &components, GameObject& go)
 {
 	m_colliders.emplace_back(std::make_shared<Collider>(components, go, *m_transforms.back()));
-	std::cout << "added collider" << std::endl;
 	components.push_back(m_colliders.back());
+}
+
+void CDP::GameCore::CreatePlayerController(std::vector<std::shared_ptr<Component>>& components, GameObject & go)
+{
+	m_player_controlls.emplace_back(std::make_shared<PlayerControlls>(components, go));
+	components.push_back(m_player_controlls.back());
 }
 
 void GameCore::Run()
 {
 	while(m_running)
-	{		
+	{
+
 		m_input.Update();
 		m_time.Update();
 		m_physics.Update();
@@ -156,6 +174,10 @@ void GameCore::Run()
 		});
 
 		std::for_each(m_sprites.begin(), m_sprites.end(), [] (std::shared_ptr<Sprite> c) {
+			c->Update();
+		});
+
+		std::for_each(m_player_controlls.begin(), m_player_controlls.end(), [](std::shared_ptr<PlayerControlls> c) {
 			c->Update();
 		});
 

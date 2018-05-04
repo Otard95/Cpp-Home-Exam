@@ -14,7 +14,7 @@ Time & CDP::Time::Instance() {
 void Time::Update() {
 	m_last = m_current;
 	m_current = std::chrono::high_resolution_clock::now();
-	m_delta_time = m_current - m_last;
+	m_delta_time = std::chrono::duration_cast<std::chrono::duration<double>> (m_current - m_last);
 }
 
 double Time::DeltaTime() {

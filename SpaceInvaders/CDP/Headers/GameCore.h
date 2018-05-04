@@ -2,6 +2,7 @@
 #include <vector>
 #include "../../nlohmann_json/json.hpp"
 #include "CDP.h"
+#include "PlayerControlls.h"
 
 namespace CDP {
 
@@ -38,11 +39,10 @@ namespace CDP {
 		// Stian
 
 		void CreateTransform(std::vector<std::shared_ptr<Component>>&, GameObject&);
-		void CreateSprite(std::vector<std::shared_ptr<Component>>& components, GameObject& go, std::string texture);
-		void CreateRigidbody(std::vector<std::shared_ptr<Component>>& components, GameObject& go);
-		void CreateCollider(std::vector<std::shared_ptr<Component>>& components, GameObject& go);
-		
-	
+		void CreateSprite(std::vector<std::shared_ptr<Component>>&, GameObject& go, std::string texture);
+		void CreateRigidbody(std::vector<std::shared_ptr<Component>>&, GameObject& go);
+		void CreateCollider(std::vector<std::shared_ptr<Component>>&, GameObject& go);
+		void CreatePlayerController(std::vector<std::shared_ptr<Component>>&, GameObject& go);
 
 		/**
 		 * ## Components
@@ -51,6 +51,7 @@ namespace CDP {
 		std::vector<std::shared_ptr<Collider>> m_colliders;
 		std::vector<std::shared_ptr<Transform>> m_transforms;
 		std::vector<std::shared_ptr<Sprite>> m_sprites;
+		std::vector<std::shared_ptr<PlayerControlls>> m_player_controlls;
 
 		//end
 	};

@@ -14,7 +14,7 @@ namespace CDP {
 
 		std::chrono::high_resolution_clock::time_point m_last;
 		std::chrono::high_resolution_clock::time_point m_current;
-		std::chrono::high_resolution_clock::duration m_delta_time;
+		std::chrono::duration<double> m_delta_time;
 
 	public:
 		static Time& Instance();
