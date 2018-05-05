@@ -81,3 +81,11 @@ void PlayerControlls::OnCollision(Collider& collider)
 	}
 }
 
+void PlayerControlls::DisableBullets()
+{
+	for (auto it = m_bullets.begin(); it != m_bullets.end(); ++it) {
+		std::shared_ptr<GameObject> go = it->lock();
+		go->Enable(false);
+	}
+}
+

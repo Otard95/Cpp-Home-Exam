@@ -35,6 +35,7 @@ namespace CDP {
 		void Update() override;
 		void OnCollision(Collider& ) override;
 
+		void DisableBullets();
 	};
 
 }

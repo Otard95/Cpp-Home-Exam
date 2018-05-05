@@ -33,6 +33,9 @@ void GameManager::NextLevel()
 {
 	m_round_score = 0;
 
+	GameCore::Instance().m_player_controlls.back()->DisableBullets();
+
+
 	for(auto it = GameCore::Instance().m_alien_logics.begin(); it != GameCore::Instance().m_alien_logics.end(); ++it)
 	{
 		std::shared_ptr<AlienLogic> al = *it;
