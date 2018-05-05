@@ -10,6 +10,8 @@ KillTrigger::KillTrigger(std::vector<std::shared_ptr<Component>> &cmp,
 {}
 
 void KillTrigger::OnCollision(Collider& col) {
-	m_game_object.Enable(false);
+		if (!(GetGameObject().GetName() == "AlienBullet" && col.GetGameObject().GetName() == "Invader") ||
+			(GetGameObject().GetName() == "Bullet" && col.GetGameObject().GetName() == "Player"))
+			m_game_object.Enable(false);
 }
 
