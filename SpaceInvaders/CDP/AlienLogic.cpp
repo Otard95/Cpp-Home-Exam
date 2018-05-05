@@ -11,14 +11,14 @@ AlienLogic::AlienLogic(std::vector<std::shared_ptr<Component>>& components,
                        double moveInterval,
                        int dropLength)
 	: Component(components, go)
-	  , m_move_length(moveLength)
-	  , m_move_interval(moveInterval)
-	  , m_direction(1)
-	  , m_drop_steps(0)
-	  , m_drop_limit(14)
-	  , m_drop_length(dropLength)
-	  , m_time_elapsed(0)
-	  , transform(trans)
+	, m_move_length(moveLength)
+	, m_move_interval(moveInterval)
+	, m_direction(1)
+	, m_drop_length(dropLength)
+	, m_has_dropped(false)
+	, m_drop(false)
+	, m_time_elapsed(0)
+	, transform(trans)
 {
 	m_start_pos_x = transform.Position().x;
 	m_start_pos_y = transform.Position().y;
@@ -43,7 +43,7 @@ void AlienLogic::Update()
 
 void AlienLogic::CheckPosition()
 {
-	if (transform.Position().y >= 800)
+	if (GameCore::Instance().GetLoopStatus() && transform.Position().y >= 800)
 	{
 		std::cout << "#############################################\n";
 		std::cout << "##                                         ##\n";
@@ -57,22 +57,22 @@ void AlienLogic::CheckPosition()
 
 void AlienLogic::Move()
 {
-	//	std::cout << m_move_interval << std::endl;
 	if (m_time_elapsed >= m_move_interval)
 	{
 		m_time_elapsed = 0;
-
-		if (m_drop_steps == m_drop_limit)
+		
+		if (m_drop)
 		{
 			transform.SetPosition(transform.Position().x, transform.Position().y + m_drop_length);
 			m_direction *= -1;
-			m_drop_steps = 0;
+			m_has_dropped = true;
+			m_drop = false;
 			return;
 		}
 		transform.SetPosition(transform.Position().x + m_move_length * m_direction
 		                      , transform.Position().y);
 
-		m_drop_steps++;
+		m_has_dropped = false;
 		return;
 	}
 	m_time_elapsed += Time::Instance().DeltaTime();
@@ -80,24 +80,37 @@ void AlienLogic::Move()
 
 void AlienLogic::OnCollision(Collider& collider)
 {
-	collider.GetGameObject().Enable(false);
-	m_game_object.Enable(false);
-	std::shared_ptr<GameManager> gm = m_game_manager.lock();
-	if (gm) gm->AddScore();
+	std::string name = collider.GetGameObject().GetName();
+	if (name == "Bullet")
+	{
+		collider.GetGameObject().Enable(false);
+		m_game_object.Enable(false);
+		std::shared_ptr<GameManager> gm = m_game_manager.lock();
+		if (gm) gm->AddScore();
+	}
+	else if (!m_has_dropped && (name == "LeftWall" || name == "RightWall"))
+	{
+		for (auto it = GameCore::Instance().m_alien_logics.begin(); it != GameCore::Instance().m_alien_logics.end(); ++it)
+		{
+			it->get()->Drop();	
+		}
+	}
+}
+
+void AlienLogic::Drop()
+{
+	m_drop = true;	
 }
 
 void AlienLogic::Reset()
 {
 	transform.SetPosition(m_start_pos_x, m_start_pos_y);
 	m_direction = 1;
-	m_drop_steps = 0;
 	m_time_elapsed = 0;
 
 	if(m_move_interval >= 0.2)
 	{
 		m_move_interval -= 0.1;
 	}
-
-	std::cout << m_move_interval << std::endl;
 }
 

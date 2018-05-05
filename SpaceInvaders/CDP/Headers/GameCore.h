@@ -50,6 +50,7 @@ namespace CDP {
 
 		void Run();
 		void Stop();
+		bool GetLoopStatus();
 
 		/**
 		 * ## Components

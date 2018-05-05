@@ -352,6 +352,11 @@ void GameCore::Run()
 	}
 }
 
+bool GameCore::GetLoopStatus()
+{
+	return m_running;
+}
+
 void CDP::GameCore::Stop()
 {
 	m_running = false;

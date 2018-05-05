@@ -12,9 +12,11 @@ namespace CDP
 		int m_move_length;
 		double m_move_interval;
 		int m_direction;
-		int m_drop_steps;
-		int m_drop_limit;
+
 		int m_drop_length;
+		bool m_has_dropped;
+		bool m_drop;
+
 		double m_time_elapsed;
 		int m_start_pos_x;
 		int m_start_pos_y;
@@ -29,6 +31,8 @@ namespace CDP
 		void CheckPosition();
 		void Move();
 		void Reset();
+
+		void Drop();
 
 		AlienLogic(std::vector<std::shared_ptr<Component>> &,
 									GameObject&,
