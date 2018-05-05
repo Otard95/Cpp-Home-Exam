@@ -10,8 +10,6 @@ KillTrigger::KillTrigger(std::vector<std::shared_ptr<Component>> &cmp,
 {}
 
 void KillTrigger::OnCollision(Collider& col) {
-	
-	col.GetGameObject().Enable(false);
-	//m_game_object.Enable(false);
+	m_game_object.Enable(false);
 }
 

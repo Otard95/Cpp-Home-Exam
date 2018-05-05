@@ -192,7 +192,7 @@ void AlienLogic::Fire()
 					std::shared_ptr<GameObject> go = it->lock();
 					if (go->enabled) continue;
 					go->GetComponent<Transform>()->SetPosition(m_transform.Position().x, m_transform.Position().y);
-					go->GetComponent<Rigidbody>()->velocity.y = m_bullet_prefab["components"][3]["velocity"]["y"];
+					go->GetComponent<Rigidbody>()->velocity.y = m_bullet_prefab["components"][4]["velocity"]["y"];
 					go->Enable(true);
 					m_cooldown = distribution(generator);
 					break;
