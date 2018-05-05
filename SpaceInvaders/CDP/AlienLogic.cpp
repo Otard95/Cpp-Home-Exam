@@ -17,6 +17,7 @@ AlienLogic::AlienLogic(std::vector<std::shared_ptr<Component>>& components,
 	: Component(components, go)
 	, m_move_length(moveLength)
 	, m_move_interval(moveInterval)
+	, m_curr_move_interval(moveInterval)
 	, m_direction(1)
 	, m_drop_length(dropLength)
 	, m_has_dropped(false)
@@ -71,7 +72,7 @@ void AlienLogic::CheckPosition()
 
 void AlienLogic::Move()
 {
-	if (m_time_elapsed >= m_move_interval)
+	if (m_time_elapsed >= m_curr_move_interval)
 	{
 		m_time_elapsed = 0;
 		
@@ -101,7 +102,7 @@ void AlienLogic::OnCollision(Collider& collider)
 		m_game_object.Enable(false);
 		std::shared_ptr<GameManager> gm = m_game_manager.lock();
 		if (gm) gm->AddScore();
-		UpdateFrontAlien();
+		UpdateFrontAlien(true);
 	}
 	else if (!m_has_dropped && (name == "LeftWall" || name == "RightWall"))
 	{
@@ -137,16 +138,23 @@ void AlienLogic::Reset()
 		m_fire_rate -= 0.5;
 	}
 
+	m_curr_move_interval = m_move_interval;
+
 	UpdateFrontAlien();
+
 }
 
-void AlienLogic::UpdateFrontAlien()
+void AlienLogic::UpdateFrontAlien(bool update_curr_intreval)
 {
 	std::shared_ptr<AlienLogic> currentFrontAlien = nullptr;
 	
 	for (auto it = GameCore::Instance().m_alien_logics.begin(); it != GameCore::Instance().m_alien_logics.end(); ++it)
 	{
 		std::shared_ptr<AlienLogic> alien = *it;
+
+		if (update_curr_intreval) 
+			alien->m_curr_move_interval -= 0.008;
+
 
 		//find all enabled objects in same column
 		if (alien->GetGameObject().enabled && alien->m_transform.Position().x == m_transform.Position().x)

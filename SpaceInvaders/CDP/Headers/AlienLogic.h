@@ -11,6 +11,7 @@ namespace CDP
 	private:
 		int m_move_length;
 		double m_move_interval;
+		double m_curr_move_interval;
 		int m_direction;
 
 		int m_drop_length;
@@ -37,7 +38,7 @@ namespace CDP
 		void CheckPosition();
 		void Move();
 		void Reset();
-		void UpdateFrontAlien();
+		void UpdateFrontAlien(bool update_curr_intreval = false);
 		void SetIsInFront(bool);
 
 		void Drop();
