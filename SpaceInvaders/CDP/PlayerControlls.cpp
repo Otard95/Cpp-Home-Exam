@@ -29,6 +29,13 @@ void PlayerControlls::SetFireRate(double fire_rate) {
 void PlayerControlls::Start() {
 	// get the transform component
 	m_transform = GetComponent<Transform>();
+
+	std::weak_ptr<GameObject> wgo = GameCore::Instance().FindGameObject("GameManager");
+	std::shared_ptr<GameObject> go;
+	if ((go = wgo.lock()))
+	{
+		m_game_manager = go->GetComponent<GameManager>();
+	}
 }
 
 void PlayerControlls::Update() {
@@ -64,5 +71,13 @@ void PlayerControlls::Update() {
 		m_cooldown -= m_time.DeltaTime();
 	}
 
+}
+void PlayerControlls::OnCollision(Collider& collider)
+{
+	if (collider.GetGameObject().GetName() == "AlienBullet")
+	{
+		std::shared_ptr<GameManager> gm = m_game_manager.lock();
+		gm->GameOver();
+	}
 }
 

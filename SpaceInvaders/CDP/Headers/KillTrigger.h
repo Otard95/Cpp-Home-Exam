@@ -13,9 +13,7 @@ namespace CDP {
 		~KillTrigger() = default;
 
 		void OnCollision(Collider&) override;
-
 	};
-
 }
 
 #endif

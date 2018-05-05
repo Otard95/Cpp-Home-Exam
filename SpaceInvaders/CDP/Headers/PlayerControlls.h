@@ -3,6 +3,7 @@
 
 #include <memory>
 #include "CDP.h"
+#include "GameManager.h"
 #include "../../nlohmann_json/json.hpp"
 
 namespace CDP {
@@ -21,6 +22,7 @@ namespace CDP {
 		std::vector<std::weak_ptr<GameObject>> m_bullets;
 
 	public:
+		std::weak_ptr<GameManager> m_game_manager;
 		PlayerControlls(std::vector<std::shared_ptr<Component>> &,
 										GameObject&,
 										nlohmann::json&);
@@ -31,9 +33,9 @@ namespace CDP {
 
 		void Start() override;
 		void Update() override;
+		void OnCollision(Collider& ) override;
 
 	};
 
 }
-
 #endif

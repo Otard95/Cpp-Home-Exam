@@ -17,6 +17,7 @@ namespace CDP
 
 		void AddScore();
 		void NextLevel();
+		void GameOver();
 	};
 }
 

@@ -35,10 +35,20 @@ void GameManager::NextLevel()
 
 	for(auto it = GameCore::Instance().m_alien_logics.begin(); it != GameCore::Instance().m_alien_logics.end(); ++it)
 	{
-		auto al = it->get();
-		al->Reset();
-
-		auto go = it->get()->GetGameObject();
-		go.Enable(true);
+		std::shared_ptr<AlienLogic> al = *it;
+		al->GetGameObject().Enable(true);
+		al->Reset();		
 	}
+}
+
+
+void GameManager::GameOver()
+{
+	std::cout << "#############################################\n";
+	std::cout << "##                                         ##\n";
+	std::cout << "##               GAME OVER!                ##\n";
+	std::cout << "##                                         ##\n";
+	std::cout << "#############################################" << std::endl;
+
+	GameCore::Instance().Stop();
 }

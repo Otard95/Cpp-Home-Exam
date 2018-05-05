@@ -238,7 +238,8 @@ void GameCore::AddComponent(GameObject& go, std::string type, nlohmann::json& jo
 	}
 	else if (type == "AlienLogic")
 	{
-		CreateAlienLogic(go.GetComponents(), go, jo["move_length"], jo["move_interval"], jo["drop_length"]);
+		CreateAlienLogic(go.GetComponents(), go, jo["move_length"], jo["move_interval"], jo["drop_length"]
+												, jo["fire_rate"], jo["bullet_prefab"]);
 	}
 	else if (type == "GameManager")
 	{
@@ -286,9 +287,13 @@ void CDP::GameCore::CreateKillTrigger(std::vector<std::shared_ptr<Component>>& c
 	cmp.push_back(m_kill_triggers.back());
 }
 
-void CDP::GameCore::CreateAlienLogic(std::vector<std::shared_ptr<Component>>& components, GameObject& go, int moveLength, double moveInterval, int dropLength)
+void CDP::GameCore::CreateAlienLogic(std::vector<std::shared_ptr<Component>>& components, GameObject& go
+										, int moveLength, double moveInterval, int dropLength
+										, int fireRate, nlohmann::json bulletPrefab)
 {
-	m_alien_logics.emplace_back(std::make_shared<AlienLogic>(components, go, *m_transforms.back(), moveLength, moveInterval, dropLength));
+	m_alien_logics.emplace_back(std::make_shared<AlienLogic>(components, go, *m_transforms.back()
+										, moveLength, moveInterval, dropLength
+										, fireRate, bulletPrefab));
 	components.push_back(m_alien_logics.back());
 }
 

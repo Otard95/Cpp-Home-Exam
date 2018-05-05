@@ -24,7 +24,9 @@ namespace CDP {
 		void CreateCollider(std::vector<std::shared_ptr<Component>>&, GameObject& go);
 		void CreatePlayerController(std::vector<std::shared_ptr<Component>>&, GameObject& go, nlohmann::json&);
 		void CreateKillTrigger(std::vector<std::shared_ptr<Component>>&, GameObject& go);
-		void CreateAlienLogic(std::vector<std::shared_ptr<Component>>& components, GameObject & go, int moveLength, double moveInterval, int dropLength);
+		void CreateAlienLogic(std::vector<std::shared_ptr<Component>>&, GameObject & go
+								, int moveLength, double moveInterval, int dropLength
+								, int fireRate, nlohmann::json bulletPrefab);
 		void CreateGameManager(std::vector<std::shared_ptr<Component>>& vector, GameObject& go);
 
 		static GameCore m_instance;

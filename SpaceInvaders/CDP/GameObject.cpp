@@ -1,6 +1,7 @@
 #include <algorithm>
 #include "Headers/GameObject.h"
 #include "Headers/Transform.h"
+#include <iostream>
 
 using namespace CDP;
 

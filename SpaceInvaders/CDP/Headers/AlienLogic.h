@@ -21,9 +21,15 @@ namespace CDP
 		int m_start_pos_x;
 		int m_start_pos_y;
 
+		bool m_is_in_front;
+		int m_fire_rate;
+		double m_cooldown;
+		nlohmann::json m_bullet_prefab;
+		std::vector<std::weak_ptr<GameObject>> m_bullets;
+
 	public:
 		std::weak_ptr<GameManager> m_game_manager;
-		Transform& transform;
+		Transform& m_transform;
 		void Start() override;
 		void Update() override;
 		void OnCollision(Collider&) override;
@@ -31,15 +37,20 @@ namespace CDP
 		void CheckPosition();
 		void Move();
 		void Reset();
+		void UpdateFrontAlien();
+		void SetIsInFront(bool);
 
 		void Drop();
+		void Fire();
 
 		AlienLogic(std::vector<std::shared_ptr<Component>> &,
 									GameObject&,
 									Transform&,
 									int,
 									double,
-									int);
+									int,
+									int,
+									nlohmann::json);
 		~AlienLogic() = default;
 	};
 }
