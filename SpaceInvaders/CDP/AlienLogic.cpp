@@ -153,7 +153,7 @@ void AlienLogic::UpdateFrontAlien(bool update_curr_intreval)
 		std::shared_ptr<AlienLogic> alien = *it;
 
 		if (update_curr_intreval) 
-			alien->m_curr_move_interval -= 0.008;
+			alien->m_curr_move_interval *= 0.95;
 
 
 		//find all enabled objects in same column
